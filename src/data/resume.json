@@ -1,0 +1,153 @@
+{
+  "personalInfo": {
+    "name": "Bogdan-Madalin Fintina",
+    "title": "Agnostic Software Engineer",
+    "email": "fintina.bogdan@gmail.com",
+    "location": "Oradea, Bihor, Romania",
+    "summary": "I always enjoyed solving problems, it is also one of the reasons why i started programming. During my journey i had the opportunity to learn an wide array of languages, technologies, tools, processes and technologies. Even if my main programming language is php and i prefer to use symfony as a framework, my opinion is that every language has its purpose. It all boils down to what problem you are trying to solve.",
+    "socialLinks": {
+      "github": "https://github.com/fintina-madalin",
+      "linkedin": "https://www.linkedin.com/in/fintina-madalin/",
+      "twitter": ""
+    }
+  },
+  "workExperience": [
+    {
+      "company": "Tide",
+      "position": "Senior Software Engineer",
+      "location": "Remote",
+      "startDate": "2024-03",
+      "endDate": "Present",
+      "highlights": [
+        "Currently working as a Senior Software Engineer at Tide",
+        "Providing professional services including Web Development, SaaS Development, and Software Testing",
+        "Specializing in Database Development, Application Development, and Custom Software Development",
+        "Leading Cloud Application Development initiatives"
+      ]
+    },
+
+    {
+      "company": "Remote Tech",
+      "position": "Senior Software Engineer",
+      "location": "Remote",
+      "startDate": "2023-03",
+      "endDate": "2024-03",
+      "highlights": [
+        "Led the development and optimization of backend systems for IoT devices and data",
+        "Achieved 174% increase in API responsiveness through optimization",
+        "Led the transition to Symfony framework",
+        "Introduced Golang (ChirpStack) to the tech stack",
+        "Implemented RabbitMQ and MQTT protocol for efficient communication",
+        "Introduced Jenkins deployment pipelines for automation"
+      ]
+    },
+    {
+      "company": "Beecoded",
+      "position": "Senior Software Engineer",
+      "location": "Remote",
+      "startDate": "2022-10",
+      "endDate": "2023-03",
+      "highlights": [
+        "Led development of cutting-edge digital solutions using React, Node.js, Laravel, Vue.js, and VTEX",
+        "Provided technical leadership and mentorship to junior team members",
+        "Engaged in end-to-end development processes",
+        "Optimized application performance and scalability",
+        "Integrated third-party platforms and services"
+      ]
+    },
+    {
+      "company": "Bob Concierge",
+      "position": "Team Lead",
+      "location": "Remote",
+      "startDate": "2022-01",
+      "endDate": "2022-10",
+      "highlights": [
+        "Led a team of 3 developers in creating efficient web applications",
+        "Used PHP 7.4, Symfony, MySQL, Redis, Podman, Kibana, and Elastic Search",
+        "Implemented strategic planning methodologies",
+        "Provided mentorship and technical resources to team members",
+        "Analyzed and improved software performance metrics"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Udemy and other online teaching platforms",
+      "degree": "Self-taught Software Development",
+      "location": "Constanta",
+      "startDate": "2013-09",
+      "endDate": "2020-09"
+    },
+    {
+      "institution": "Link Academy",
+      "degree": "Java Android Mobile Development",
+      "location": "Bucharest",
+      "startDate": "2015-09",
+      "endDate": "2016-09"
+    },
+    {
+      "institution": "Academia navala Mircea cel Batran",
+      "degree": "Naval Officer",
+      "location": "Constanta",
+      "startDate": "2010-09",
+      "endDate": "2013-09"
+    },
+    {
+      "institution": "Colegiul national de arte Regina Maria",
+      "degree": "Digital Image Processing",
+      "location": "Constanta",
+      "startDate": "2006-09",
+      "endDate": "2010-09"
+    }
+  ],
+  "skills": {
+    "programmingLanguages": ["PHP", "JavaScript", "Java", "Python", "Golang"],
+    "frontend": ["React", "Next.js", "jQuery", "HTML", "CSS", "Bootstrap", "Tailwind CSS"],
+    "backend": ["Symfony", "Laravel", "Node.js", "Flask", "Django", "FastAPI", "Spring Boot"],
+    "databases": ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
+    "devOps": ["Docker", "Kubernetes", "Jenkins", "Git", "CI/CD"],
+    "tools": ["RabbitMQ", "MQTT", "DataDog", "NATS", "Kibana", "Grafana", "SonarQube", "Postman", "Insomnia", "Swagger", "OpenAPI"],
+    "services": ["Web Development", "SaaS Development", "Software Testing", "Database Development", "Application Development", "Custom Software Development", "Cloud Application Development"]
+  },
+  "projects": [
+    {
+      "name": "ANAF e-Transport Integration System",
+      "company": "Trakosoft",
+      "description": "Designed and implemented a service that communicates with the ANAF e-Transport API for Romanian regulatory compliance. Modernized legacy Laravel system by integrating Symfony components and implementing Docker for streamlined development and deployment processes.",
+      "technologies": ["Laravel", "Symfony", "Docker", "PHP", "ANAF e-Transport API", "REST API"],
+      "startDate": "2021-06",
+      "endDate": "2021-12",
+      "status": "Completed",
+      "link": "#"
+    },
+    {
+      "name": "RTIR Hungarian Invoicing System",
+      "company": "Trakosoft",
+      "description": "Architected and developed a comprehensive service for submitting invoice data to Hungarian tax authorities (RTIR). Built robust API integration handling tax compliance requirements and automated invoice processing workflows.",
+      "technologies": ["Laravel", "Symfony", "PHP", "Hungarian Tax API", "RTIR", "XML Processing"],
+      "startDate": "2022-01",
+      "endDate": "2022-06",
+      "status": "Completed",
+      "link": "#"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "React Certification",
+      "issuer": "Luxoft",
+      "date": "2021-07"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "proficiency": "Advanced"
+    },
+    {
+      "language": "Romanian",
+      "proficiency": "Native"
+    }
+  ],
+  "recommendations": [
+  ]
+} 
