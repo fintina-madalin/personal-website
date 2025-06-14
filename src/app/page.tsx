@@ -36,10 +36,6 @@ export default function Home() {
                  className="text-gray-400 hover:text-blue-400 transition-colors flex items-center space-x-2">
                 <span className="font-mono text-sm">[LinkedIn]</span>
               </a>
-              <a href={resume.personalInfo.socialLinks.twitter || '#'} target="_blank" rel="noopener noreferrer" 
-                 className="text-gray-400 hover:text-purple-400 transition-colors flex items-center space-x-2">
-                <span className="font-mono text-sm">[Twitter]</span>
-              </a>
             </div>
             
             {/* About Me Section */}

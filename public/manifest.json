@@ -1,11 +1,11 @@
 {
-  "name": "Personal Resume",
-  "short_name": "Resume",
-  "description": "A personal resume website built with Next.js",
+  "name": "Bogdan-Madalin Fintina - Agnostic Software Engineer",
+  "short_name": "Bogdan Fintina",
+  "description": "Bogdan-Madalin Fintina - Agnostic Software Engineer specializing in problem-solving through diverse programming languages and technologies",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
