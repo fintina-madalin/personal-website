@@ -2,7 +2,7 @@ export interface PersonalInfo {
   name: string;
   title: string;
   email: string;
-  phone: string;
+  phone?: string;
   location: string;
   summary: string;
   socialLinks: {

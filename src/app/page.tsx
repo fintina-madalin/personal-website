@@ -249,7 +249,7 @@ export default function Home() {
                     <div className="flex-1">
                       <h3 className="text-lg font-semibold text-yellow-300 font-mono mb-2">{rec.recommender}</h3>
                       <blockquote className="text-gray-300 text-sm leading-relaxed italic">
-                        "{rec.text}"
+                        &ldquo;{rec.text}&rdquo;
                       </blockquote>
                     </div>
                   </div>

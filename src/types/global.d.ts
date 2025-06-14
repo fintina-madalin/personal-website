@@ -1,5 +1,5 @@
 interface Workbox {
-  addEventListener: (type: string, callback: (event: any) => void) => void;
+  addEventListener: (type: string, callback: (event: Event) => void) => void;
   messageSkipWaiting: () => void;
   register: () => Promise<void>;
 }
