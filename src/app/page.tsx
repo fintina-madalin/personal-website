@@ -88,7 +88,7 @@ export default function Home() {
     yPosition += 8;
 
     doc.setFontSize(10);
-    const contactInfo = `${resume.personalInfo.location} | ${resume.personalInfo.phone} | ${resume.personalInfo.email || 'contact@example.com'}`;
+    const contactInfo = `${resume.personalInfo.location} | ${resume.personalInfo.email} | fintina.ro || 'contact@example.com'}`;
     doc.text(contactInfo, margin, yPosition);
     yPosition += 15;
 
@@ -122,7 +122,7 @@ export default function Home() {
 
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
-      doc.text(`${job.company} | ${job.location} | ${job.startDate} - ${job.endDate}`, margin, yPosition);
+      doc.text(`${job.company} | ${job.contract_type} | ${job.location} | ${job.startDate} - ${job.endDate}`, margin, yPosition);
       yPosition += 8;
 
       job.highlights.forEach((highlight) => {
@@ -141,30 +141,6 @@ export default function Home() {
       doc.addPage();
       yPosition = 20;
     }
-
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.text('SKILLS', margin, yPosition);
-    yPosition += 8;
-
-    Object.entries(resume.skills).forEach(([category, skills]) => {
-      if (yPosition > 260) {
-        doc.addPage();
-        yPosition = 20;
-      }
-
-      doc.setFontSize(11);
-      doc.setFont('helvetica', 'bold');
-      const categoryName = category.replace(/([A-Z])/g, ' $1').trim().toUpperCase();
-      doc.text(categoryName, margin, yPosition);
-      yPosition += 6;
-
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      const skillsText = skills.join(', ');
-      yPosition = addWrappedText(skillsText, margin, yPosition, contentWidth, 9);
-      yPosition += 8;
-    });
 
     // Education
     if (yPosition > 200) {
