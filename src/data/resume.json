@@ -4,7 +4,7 @@
     "title": "Agnostic Software Engineer",
     "email": "fintina.bogdan@gmail.com",
     "location": "Oradea, Bihor, Romania",
-    "summary": "I always enjoyed solving problems, it is also one of the reasons why i started programming. During my journey i had the opportunity to learn an wide array of languages, technologies, tools, processes and technologies. Even if my main programming language is php and i prefer to use symfony as a framework, my opinion is that every language has its purpose. It all boils down to what problem you are trying to solve.",
+    "summary": "I have always enjoyed solving problems, which is one of the reasons why I started programming. During my journey, I have had the opportunity to learn a wide array of languages, technologies, tools, and processes. My general opinion is that every language has its purpose. It all boils down to what problems you are trying to solve.",
     "socialLinks": {
       "github": "https://github.com/fintina-madalin",
       "linkedin": "https://www.linkedin.com/in/fintina-madalin/",
@@ -16,67 +16,181 @@
       "company": "Tide",
       "position": "Senior Software Engineer",
       "location": "Remote",
-      "startDate": "2024-03",
+      "contract_type": "Full time B2B contract",
+      "startDate": "2025-01",
       "endDate": "Present",
       "highlights": [
-        "Currently working as a Senior Software Engineer at Tide",
-        "Providing professional services including Web Development, SaaS Development, and Software Testing",
-        "Specializing in Database Development, Application Development, and Custom Software Development",
-        "Leading Cloud Application Development initiatives"
+        "Improved testing coverage and code quality by implementing unit tests and refactoring legacy code",
+        "Designed and implemented various design patterns and architecture patterns to improve code quality and maintainability"
       ]
     },
-
+    {
+      "company": "Trakosoft",
+      "position": "Senior Software Engineer",
+      "location": "Remote",
+      "contract_type": "Project based contract",
+      "startDate": "2024-01",
+      "endDate": "2025-03",
+      "highlights": [
+        "Integrated Symfony as a new technology stack component, improving code quality, maintainability, and future-proofing the system",
+        "Designed and implemented a service that communicates with the ANAF e-Transport API, enabling seamless data exchange and compliance with Romanian regulations",
+        "Architected and developed a service for submitting invoice data to Hungarian authorities, ensuring compliance with local tax regulations and automating the invoicing process"
+      ]
+    },
     {
       "company": "Remote Tech",
       "position": "Senior Software Engineer",
       "location": "Remote",
+      "contract_type": "Full time employment",
       "startDate": "2023-03",
       "endDate": "2024-03",
       "highlights": [
-        "Led the development and optimization of backend systems for IoT devices and data",
-        "Achieved 174% increase in API responsiveness through optimization",
-        "Led the transition to Symfony framework",
-        "Introduced Golang (ChirpStack) to the tech stack",
-        "Implemented RabbitMQ and MQTT protocol for efficient communication",
-        "Introduced Jenkins deployment pipelines for automation"
+        "Led development and optimization of backend systems crucial for managing IoT devices and data",
+        "Achieved a remarkable 174% increase in API responsiveness through meticulous optimization of database queries, backend processes and MQTT communication",
+        "Led the transition to the Symfony framework, recognizing its robust architecture and extensive feature set as ideal for IoT ecosystem",
+        "Introduced Golang (ChirpStack) to the tech stack, enriching IoT infrastructure with lightweight and high-performance capabilities",
+        "Implemented RabbitMQ to establish efficient communication channels and MQTT protocol for lightweight messaging between IoT devices",
+        "Introduced Jenkins deployment pipelines to automate the deployment process, streamlining software releases and ensuring consistent deployments"
       ]
     },
     {
       "company": "Beecoded",
       "position": "Senior Software Engineer",
       "location": "Remote",
+      "contract_type": "Project based contract",
       "startDate": "2022-10",
-      "endDate": "2023-03",
+      "endDate": "2023-07",
       "highlights": [
-        "Led development of cutting-edge digital solutions using React, Node.js, Laravel, Vue.js, and VTEX",
-        "Provided technical leadership and mentorship to junior team members",
-        "Engaged in end-to-end development processes",
-        "Optimized application performance and scalability",
-        "Integrated third-party platforms and services"
+        "Provided technical leadership and mentorship to junior team members, ensuring adherence to best practices and coding standards",
+        "Engaged in end-to-end development processes using React, Node.js, Laravel, Vue.js, and VTEX",
+        "Optimized application performance and scalability through efficient code, architecture design, and appropriate tools",
+        "Integrated third-party platforms and services such as VTEX for e-commerce solutions, ensuring seamless functionality"
       ]
     },
     {
       "company": "Bob Concierge",
       "position": "Team Lead",
       "location": "Remote",
+      "contract_type": "Full time B2B contract",
       "startDate": "2022-01",
       "endDate": "2022-10",
       "highlights": [
-        "Led a team of 3 developers in creating efficient web applications",
-        "Used PHP 7.4, Symfony, MySQL, Redis, Podman, Kibana, and Elastic Search",
-        "Implemented strategic planning methodologies",
-        "Provided mentorship and technical resources to team members",
-        "Analyzed and improved software performance metrics"
+        "Led a talented team of 3 developers in creating highly efficient web applications",
+        "Leveraged latest technologies including PHP 7.4, Symfony, MySQL, Redis, Podman, Kibana, and Elastic Search",
+        "Implemented strategic planning methodologies and set achievable goals to optimize team workflow",
+        "Developed technical resources and provided mentorship to empower developers and drive continuous improvement",
+        "Analyzed software performance metrics to identify enhancement opportunities and improve scalability and reliability"
+      ]
+    },
+    {
+      "company": "Vivre",
+      "position": "Senior Backend Software Engineer",
+      "location": "Remote",
+      "contract_type": "Full time B2B contract",
+      "startDate": "2021-09",
+      "endDate": "2022-01",
+      "highlights": [
+        "Hired in a new team with the mission to migrate monolithic application to microservices architecture",
+        "Achieved complete redesign of the pricing mechanism using 2 microservices",
+        "Developed bridge microservice between old system and new architecture",
+        "Built pricing calculation microservice based on time intervals, base price and various data points",
+        "Utilized technologies: PHP 7.4, Symfony, MySQL, RabbitMQ, Yii2"
+      ]
+    },
+    {
+      "company": "eMag",
+      "position": "Senior Backend Software Engineer",
+      "location": "Bucharest",
+      "contract_type": "Full time employment",
+      "startDate": "2020-01",
+      "endDate": "2021-09",
+      "highlights": [
+        "Part of Internal Apps and Processes division, maintaining and providing support for CI/CD tools (Jenkins, Drone.io, SonarQube)",
+        "Maintained selenium grid used for all acceptance and integration testing",
+        "Developed 3 applications: acceptance testing platform using Codeception, data propagation verification platform, and technical scoring system",
+        "Analyzed benefits and drawbacks of tools for increased code quality and better system uptime",
+        "Wrote servlets for self-healing selenium grid deployed in Kubernetes and learned Helm, Kibana, Grafana"
+      ]
+    },
+    {
+      "company": "Sound Good Mobile",
+      "position": "Senior Backend Software Engineer",
+      "location": "Bucharest",
+      "contract_type": "Full time employment",
+      "startDate": "2018-10",
+      "endDate": "2020-01",
+      "highlights": [
+        "Designed system architecture alongside team lead, developing various APIs and microservices",
+        "Created interfaces for advertising and customer support teams to increase productivity",
+        "Integrated payment processors and payment gateways with flawless implementation",
+        "Worked with external providers to implement antifraud layers into current systems",
+        "Implemented content caching mechanism using Redis and created Jenkins pipelines with Groovy scripts"
+      ]
+    },
+    {
+      "company": "Daily Posts Copywriting",
+      "position": "Full Stack Software Engineer",
+      "location": "Remote",
+      "contract_type": "Project based contract",
+      "startDate": "2018-03",
+      "endDate": "2018-09",
+      "highlights": [
+        "Took over development of internal mentoring platform from offshore team and completed the project",
+        "Migrated backend from pure PHP to Symfony with Doctrine for database management",
+        "Addressed security issues presented by previous architecture decisions",
+        "Successfully implemented Symfony framework in an existing project that was 90% completed"
+      ]
+    },
+    {
+      "company": "ARKHAM Enterprises GmbH",
+      "position": "Full Stack Software Engineer",
+      "location": "Remote",
+      "contract_type": "Project based contract",
+      "startDate": "2017-10",
+      "endDate": "2018-02",
+      "highlights": [
+        "Created WordPress custom plugins and addons for various clients",
+        "Maintained legacy codebase and provided code reviews to help team growth",
+        "Rewrote backend of projects and moved all logic to WordPress plugins and Visual Composer addons",
+        "Learned Twig, Symfony 2.8, Doctrine, Docker, Git and was introduced to React"
+      ]
+    },
+    {
+      "company": "Deximo",
+      "position": "Web Developer",
+      "location": "Constanta",
+      "contract_type": "Full time employment",
+      "startDate": "2014-09",
+      "endDate": "2016-09",
+      "highlights": [
+        "Created and maintained real estate agency platform",
+        "Implemented various APIs to automatically publish new listings on property portals",
+        "Integrated with platforms like imobiliare.ro, titirez.ro, storia.ro, homezz.ro",
+        "Learned WordPress core, plugin and theme development, jQuery, Bootstrap"
+      ]
+    },
+    {
+      "company": "Grup Proprietati Perfecte",
+      "position": "Graphic Designer",
+      "location": "Constanta",
+      "contract_type": "Full time employment",
+      "startDate": "2013-06",
+      "endDate": "2014-08",
+      "highlights": [
+        "Created graphics for magazines, flyers, and marketing materials",
+        "Published new properties on real estate platforms",
+        "Learned HTML, CSS, JavaScript, PHP and MySQL",
+        "Implemented various APIs in the real estate platform"
       ]
     }
   ],
   "education": [
     {
-      "institution": "Udemy and other online teaching platforms",
+      "institution": "Udemy and various online teaching platforms",
       "degree": "Self-taught Software Development",
       "location": "Constanta",
       "startDate": "2013-09",
-      "endDate": "2020-09"
+      "endDate": "Present"
     },
     {
       "institution": "Link Academy",
@@ -109,28 +223,6 @@
     "tools": ["RabbitMQ", "MQTT", "DataDog", "NATS", "Kibana", "Grafana", "SonarQube", "Postman", "Insomnia", "Swagger", "OpenAPI"],
     "services": ["Web Development", "SaaS Development", "Software Testing", "Database Development", "Application Development", "Custom Software Development", "Cloud Application Development"]
   },
-  "projects": [
-    {
-      "name": "ANAF e-Transport Integration System",
-      "company": "Trakosoft",
-      "description": "Designed and implemented a service that communicates with the ANAF e-Transport API for Romanian regulatory compliance. Modernized legacy Laravel system by integrating Symfony components and implementing Docker for streamlined development and deployment processes.",
-      "technologies": ["Laravel", "Symfony", "Docker", "PHP", "ANAF e-Transport API", "REST API"],
-      "startDate": "2021-06",
-      "endDate": "2021-12",
-      "status": "Completed",
-      "link": "#"
-    },
-    {
-      "name": "RTIR Hungarian Invoicing System",
-      "company": "Trakosoft",
-      "description": "Architected and developed a comprehensive service for submitting invoice data to Hungarian tax authorities (RTIR). Built robust API integration handling tax compliance requirements and automated invoice processing workflows.",
-      "technologies": ["Laravel", "Symfony", "PHP", "Hungarian Tax API", "RTIR", "XML Processing"],
-      "startDate": "2022-01",
-      "endDate": "2022-06",
-      "status": "Completed",
-      "link": "#"
-    }
-  ],
   "certifications": [
     {
       "name": "React Certification",

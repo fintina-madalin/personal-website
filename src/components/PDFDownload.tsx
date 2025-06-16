@@ -35,7 +35,7 @@ export default function PDFDownload({ resume }: PDFDownloadProps) {
     yPosition += 8;
 
     doc.setFontSize(10);
-    const contactInfo = `${resume.personalInfo.location} | ${resume.personalInfo.phone} | ${resume.personalInfo.email || 'contact@example.com'}`;
+    const contactInfo = `${resume.personalInfo.location} | ${resume.personalInfo.email} | fintina.ro || 'contact@example.com'}`;
     doc.text(contactInfo, margin, yPosition);
     yPosition += 15;
 
@@ -69,7 +69,7 @@ export default function PDFDownload({ resume }: PDFDownloadProps) {
 
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
-      doc.text(`${job.company} | ${job.location} | ${job.startDate} - ${job.endDate}`, margin, yPosition);
+      doc.text(`${job.company} | ${job.contract_type} | ${job.location} | ${job.startDate} - ${job.endDate}`, margin, yPosition);
       yPosition += 8;
 
       job.highlights.forEach((highlight) => {
@@ -197,7 +197,7 @@ export default function PDFDownload({ resume }: PDFDownloadProps) {
   return (
     <button
       onClick={generatePDF}
-      className="fixed top-6 right-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-mono text-sm px-3 py-1 rounded-lg border border-blue-400/50 hover:border-purple-400/50 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm z-10"
+      className="fixed z-30 top-3 right-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-mono text-sm px-3 py-1 rounded-lg border border-blue-400/50 hover:border-purple-400/50 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm z-10"
     >
       <span className="flex items-center space-x-2">
         <span>📄</span>

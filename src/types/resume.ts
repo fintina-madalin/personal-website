@@ -16,6 +16,7 @@ export interface WorkExperience {
   company: string;
   position: string;
   location: string;
+  contract_type: string;
   startDate: string;
   endDate: string;
   highlights: string[];

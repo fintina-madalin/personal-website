@@ -9,6 +9,7 @@ interface CollapsibleSectionProps {
   borderColor: string;
   children: ReactNode;
   defaultExpanded?: boolean;
+  id?: string;
 }
 
 export default function CollapsibleSection({ 
@@ -17,12 +18,13 @@ export default function CollapsibleSection({
   iconColor, 
   borderColor, 
   children, 
-  defaultExpanded = true 
+  defaultExpanded = true,
+  id
 }: CollapsibleSectionProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
   return (
-    <section className="mb-12">
+    <section id={id} className="mb-12">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className={`w-full text-left flex items-center justify-between p-4 rounded-lg border ${borderColor} bg-gray-800/30 hover:bg-gray-800/50 transition-all duration-300 mb-4`}
@@ -36,7 +38,7 @@ export default function CollapsibleSection({
             {isExpanded ? '[collapse]' : '[expand]'}
           </span>
           <span 
-            className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : 'rotate-0'} ${iconColor} font-mono text-lg`}
+            className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-0' : 'rotate-180'} ${iconColor} font-mono text-lg`}
           >
             ▼
           </span>
