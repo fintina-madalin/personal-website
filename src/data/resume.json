@@ -223,6 +223,7 @@
     "tools": ["RabbitMQ", "MQTT", "DataDog", "NATS", "Kibana", "Grafana", "SonarQube", "Postman", "Insomnia", "Swagger", "OpenAPI"],
     "services": ["Web Development", "SaaS Development", "Software Testing", "Database Development", "Application Development", "Custom Software Development", "Cloud Application Development"]
   },
+  "projects": [],
   "certifications": [
     {
       "name": "React Certification",
