@@ -88,7 +88,7 @@ export default function Home() {
     yPosition += 8;
 
     doc.setFontSize(10);
-    const contactInfo = `${resume.personalInfo.location} | ${resume.personalInfo.email} | fintina.ro'}`;
+    const contactInfo = `${resume.personalInfo.location} | ${resume.personalInfo.email} | fintina.ro`;
     doc.text(contactInfo, margin, yPosition);
     yPosition += 15;
 
