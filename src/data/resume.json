@@ -13,12 +13,25 @@
   },
   "workExperience": [
     {
+      "company": "Bitly",
+      "position": "Senior Software Developer",
+      "location": "Remote",
+      "contract_type": "Full time B2B contract",
+      "startDate": "2025-08",
+      "endDate": "Present",
+      "highlights": [
+        "Building and shipping features on the QRCG product within Bitly using AWS, Golang, React, and Next.js",
+        "Contributed to the transition from the legacy PHP API to the new Golang API, helping modernize the platform and improve performance",
+        "Collaborated with the team on developing custom AI skills and context management tools tailored to our projects, helping the team work faster and stay aligned"
+      ]
+    },
+    {
       "company": "Tide",
       "position": "Senior Software Engineer",
       "location": "Remote",
       "contract_type": "Full time B2B contract",
       "startDate": "2025-01",
-      "endDate": "Present",
+      "endDate": "2025-08",
       "highlights": [
         "Improved testing coverage and code quality by implementing unit tests and refactoring legacy code",
         "Designed and implemented various design patterns and architecture patterns to improve code quality and maintainability"
@@ -219,7 +232,7 @@
     "frontend": ["React", "Next.js", "jQuery", "HTML", "CSS", "Bootstrap", "Tailwind CSS"],
     "backend": ["Symfony", "Laravel", "Node.js", "Flask", "Django", "FastAPI", "Spring Boot"],
     "databases": ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
-    "devOps": ["Docker", "Kubernetes", "Jenkins", "Git", "CI/CD"],
+    "devOps": ["AWS", "Docker", "Kubernetes", "Jenkins", "Git", "CI/CD"],
     "tools": ["RabbitMQ", "MQTT", "DataDog", "NATS", "Kibana", "Grafana", "SonarQube", "Postman", "Insomnia", "Swagger", "OpenAPI"],
     "services": ["Web Development", "SaaS Development", "Software Testing", "Database Development", "Application Development", "Custom Software Development", "Cloud Application Development"]
   },
