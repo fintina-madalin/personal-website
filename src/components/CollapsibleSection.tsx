@@ -32,7 +32,7 @@ export default function CollapsibleSection({
       >
         <div className="flex items-center justify-between gap-3 font-mono text-sm sm:text-base">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="text-green-400 flex-shrink-0">~/resume</span>
+            <span className="text-mint flex-shrink-0">~/resume</span>
             <span className="text-gray-500 flex-shrink-0">$</span>
             <span className="text-gray-400 flex-shrink-0">open</span>
             <span className={`${iconColor} flex-shrink-0`} aria-hidden>{icon}</span>

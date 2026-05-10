@@ -197,7 +197,7 @@ export default function PDFDownload({ resume }: PDFDownloadProps) {
   return (
     <button
       onClick={generatePDF}
-      className="fixed z-30 top-3 right-6 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-mono text-sm px-3 py-1 rounded-lg border border-blue-400/50 hover:border-purple-400/50 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm z-10"
+      className="fixed z-30 top-3 right-6 bg-mint hover:bg-mint-bright text-[#0a0a0a] font-mono text-sm px-3 py-1 rounded-lg border border-mint/60 hover:border-mint transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm"
     >
       <span className="flex items-center space-x-2">
         <span>📄</span>

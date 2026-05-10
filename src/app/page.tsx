@@ -9,7 +9,7 @@ import { jsPDF } from 'jspdf';
 function PromptLine({ command }: { command: string }) {
   return (
     <div className="flex items-baseline gap-2 text-xs sm:text-sm">
-      <span className="text-green-400">~/resume</span>
+      <span className="text-mint">~/resume</span>
       <span className="text-gray-600">$</span>
       <span className="text-gray-200">{command}</span>
     </div>
@@ -21,11 +21,11 @@ export default function Home() {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const navigationItems = useMemo(() => [
-    { href: '#work_experience', label: 'work_experience', icon: '>', accent: 'text-blue-400' },
-    { href: '#skills', label: 'skills', icon: '#', accent: 'text-purple-400' },
-    { href: '#education', label: 'education', icon: '@', accent: 'text-cyan-400' },
-    { href: '#certifications', label: 'certifications', icon: '%', accent: 'text-orange-400' },
-    { href: '#languages', label: 'languages', icon: '&', accent: 'text-pink-400' },
+    { href: '#work_experience', label: 'work_experience', icon: '>', accent: 'text-mint' },
+    { href: '#skills', label: 'skills', icon: '#', accent: 'text-peach' },
+    { href: '#education', label: 'education', icon: '@', accent: 'text-mint' },
+    { href: '#certifications', label: 'certifications', icon: '%', accent: 'text-peach' },
+    { href: '#languages', label: 'languages', icon: '&', accent: 'text-mint' },
   ], []);
 
   const handleNavClick = () => {
@@ -195,7 +195,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <main className="min-h-screen bg-[#0a0a0a]">
       {/* Mobile Hamburger Button */}
       <button
         onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
@@ -213,7 +213,7 @@ export default function Home() {
       <div className={`fixed top-0 left-0 right-0 z-20 bg-gray-950/90 backdrop-blur-md border-b border-gray-800 transition-transform duration-300 ${isMobileNavOpen ? 'translate-y-0' : '-translate-y-full'} md:sticky md:translate-y-0`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="hidden md:flex items-center gap-2 font-mono text-xs text-gray-500 mb-2">
-            <span className="text-green-500">~/resume</span>
+            <span className="text-mint">~/resume</span>
             <span className="text-gray-600">$</span>
             <span className="text-gray-400">git</span>
             <span className="text-gray-300">checkout</span>
@@ -237,7 +237,7 @@ export default function Home() {
                 generatePDF();
                 setIsMobileNavOpen(false);
               }}
-              className="ml-0 md:ml-auto px-3 py-1.5 bg-gray-900/60 border border-green-700/40 rounded hover:bg-green-900/30 hover:border-green-500/60 transition-colors font-mono text-xs sm:text-sm flex items-center gap-2 text-green-300"
+              className="ml-0 md:ml-auto px-3 py-1.5 bg-gray-900/60 border border-mint/40 rounded hover:bg-mint/10 hover:border-mint/60 transition-colors font-mono text-xs sm:text-sm flex items-center gap-2 text-mint"
             >
               <span>↓</span>
               <span>download_pdf</span>
@@ -260,9 +260,9 @@ export default function Home() {
           <div className="rounded-lg overflow-hidden border border-gray-700 bg-gray-900/70 backdrop-blur-sm shadow-xl">
             {/* terminal title bar */}
             <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 border-b border-gray-700">
-              <span className="w-3 h-3 rounded-full bg-red-500/80" aria-hidden />
-              <span className="w-3 h-3 rounded-full bg-yellow-500/80" aria-hidden />
-              <span className="w-3 h-3 rounded-full bg-green-500/80" aria-hidden />
+              <span className="w-3 h-3 rounded-full bg-peach" aria-hidden />
+              <span className="w-3 h-3 rounded-full bg-mint/60" aria-hidden />
+              <span className="w-3 h-3 rounded-full bg-mint" aria-hidden />
               <span className="ml-2 font-mono text-xs text-gray-400 truncate">
                 bash — fintina@portfolio: ~/resume
               </span>
@@ -271,7 +271,7 @@ export default function Home() {
             {/* terminal body */}
             <div className="px-4 py-5 sm:px-6 sm:py-6 font-mono text-sm">
               {/* banner */}
-              <pre className="text-blue-400 text-[0.6rem] sm:text-xs md:text-sm leading-tight overflow-x-auto whitespace-pre" aria-hidden>
+              <pre className="text-mint text-[0.6rem] sm:text-xs md:text-sm leading-tight overflow-x-auto whitespace-pre" aria-hidden>
 {`╭──────────────────────────────────────────────╮
 │  ${resume.personalInfo.name.padEnd(43)}│
 │  ${resume.personalInfo.title.padEnd(43)}│
@@ -283,7 +283,7 @@ export default function Home() {
               <div className="mt-4 sm:mt-5">
                 <PromptLine command="whoami" />
                 <div className="pl-3 mt-1 flex items-center gap-2 text-gray-300">
-                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" aria-hidden />
+                  <span className="w-2 h-2 bg-mint rounded-full animate-pulse" aria-hidden />
                   <span>{resume.personalInfo.name}</span>
                   <span className="text-gray-600">·</span>
                   <span className="text-gray-400">{resume.personalInfo.location}</span>
@@ -301,7 +301,7 @@ export default function Home() {
                       href={resume.personalInfo.socialLinks.github || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-300 hover:text-white hover:underline truncate"
+                      className="text-mint hover:text-white hover:underline truncate"
                     >
                       github.com/fintina-madalin
                     </a>
@@ -313,7 +313,7 @@ export default function Home() {
                       href={resume.personalInfo.socialLinks.linkedin || '#'}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-300 hover:text-white hover:underline truncate"
+                      className="text-mint hover:text-white hover:underline truncate"
                     >
                       linkedin.com/in/fintina-madalin
                     </a>
@@ -323,7 +323,7 @@ export default function Home() {
                     <span className="text-gray-400 w-16 sm:w-20 inline-block">email</span>
                     <a
                       href={`mailto:${resume.personalInfo.email}`}
-                      className="text-blue-300 hover:text-white hover:underline truncate"
+                      className="text-mint hover:text-white hover:underline truncate"
                     >
                       {resume.personalInfo.email || 'contact@example.com'}
                     </a>
@@ -341,7 +341,7 @@ export default function Home() {
 
               {/* idle prompt */}
               <div className="mt-5 flex items-center gap-2 text-xs">
-                <span className="text-green-400">~/resume</span>
+                <span className="text-mint">~/resume</span>
                 <span className="text-gray-600">$</span>
                 <span className="inline-block w-2 h-4 bg-gray-300 animate-pulse" aria-hidden />
               </div>
@@ -354,8 +354,8 @@ export default function Home() {
           id="work_experience"
           title="work_experience"
           icon="&gt;"
-          iconColor="text-blue-400"
-          borderColor="border-blue-500/50"
+          iconColor="text-mint"
+          borderColor="border-mint/40"
         >
           <TimelineSection
             items={resume.workExperience.map<TimelineItem>((job) => ({
@@ -366,7 +366,7 @@ export default function Home() {
               highlights: job.highlights,
             }))}
             defaultExpanded={3}
-            accentColor="text-blue-400"
+            accentColor="text-mint"
           />
         </CollapsibleSection>
 
@@ -375,17 +375,17 @@ export default function Home() {
           id="skills"
           title="skills"
           icon="#"
-          iconColor="text-purple-400"
-          borderColor="border-purple-500/50"
+          iconColor="text-peach"
+          borderColor="border-peach/40"
         >
           <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
             <div className="flex items-center gap-2 mb-3 text-gray-500">
-              <span className="text-green-400">~/resume/skills</span>
+              <span className="text-mint">~/resume/skills</span>
               <span>$</span>
               <span className="text-gray-400">tree</span>
               <span className="text-gray-600">--depth=2</span>
             </div>
-            <div className="text-purple-400 mb-1">skills/</div>
+            <div className="text-peach mb-1">skills/</div>
             {(() => {
               const categories = Object.entries(resume.skills) as [string, string[]][];
               return categories.map(([category, skills], catIdx) => {
@@ -396,7 +396,7 @@ export default function Home() {
                   <div key={category}>
                     <div className="flex items-baseline gap-2">
                       <span className="text-gray-600 select-none">{branch}</span>
-                      <span className="text-purple-300">{category.replace(/([A-Z])/g, '_$1').toLowerCase()}/</span>
+                      <span className="text-peach/80">{category.replace(/([A-Z])/g, '_$1').toLowerCase()}/</span>
                     </div>
                     {skills.map((skill, i) => {
                       const isLastSkill = i === skills.length - 1;
@@ -420,8 +420,8 @@ export default function Home() {
           id="education"
           title="education"
           icon="@"
-          iconColor="text-cyan-400"
-          borderColor="border-cyan-500/50"
+          iconColor="text-mint"
+          borderColor="border-mint/40"
         >
           <TimelineSection
             items={resume.education.map<TimelineItem>((edu) => ({
@@ -431,7 +431,7 @@ export default function Home() {
               endDate: edu.endDate,
             }))}
             defaultExpanded={2}
-            accentColor="text-cyan-400"
+            accentColor="text-mint"
           />
         </CollapsibleSection>
 
@@ -440,12 +440,12 @@ export default function Home() {
           id="certifications"
           title="certifications"
           icon="%"
-          iconColor="text-orange-400"
-          borderColor="border-orange-500/50"
+          iconColor="text-peach"
+          borderColor="border-peach/40"
         >
           <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
             <div className="flex items-center gap-2 mb-3 text-gray-500">
-              <span className="text-green-400">~/resume/certifications</span>
+              <span className="text-mint">~/resume/certifications</span>
               <span>$</span>
               <span className="text-gray-400">git</span>
               <span className="text-gray-300">log</span>
@@ -459,9 +459,9 @@ export default function Home() {
                 const shortHash = Math.abs(hash).toString(16).padStart(7, '0').slice(0, 7);
                 return (
                   <li key={index} className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 hover:bg-gray-800/40 rounded-sm px-1 transition-colors">
-                    <span className="text-amber-400">{shortHash}</span>
-                    <span className="text-green-400/80">{cert.date}</span>
-                    <span className="text-orange-300 font-semibold">{cert.name}</span>
+                    <span className="text-peach">{shortHash}</span>
+                    <span className="text-mint/80">{cert.date}</span>
+                    <span className="text-peach font-semibold">{cert.name}</span>
                     <span className="text-gray-500">·</span>
                     <span className="text-gray-400">{cert.issuer}</span>
                   </li>
@@ -476,12 +476,12 @@ export default function Home() {
           id="languages"
           title="languages"
           icon="&amp;"
-          iconColor="text-pink-400"
-          borderColor="border-pink-500/50"
+          iconColor="text-mint"
+          borderColor="border-mint/40"
         >
           <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
             <div className="flex items-center gap-2 mb-3 text-gray-500">
-              <span className="text-green-400">~/resume/languages</span>
+              <span className="text-mint">~/resume/languages</span>
               <span>$</span>
               <span className="text-gray-400">cat</span>
               <span className="text-gray-300">languages.tsv</span>
@@ -490,7 +490,7 @@ export default function Home() {
               {resume.languages.map((lang, index) => (
                 <li key={index} className="flex items-baseline gap-3 hover:bg-gray-800/40 rounded-sm px-1 transition-colors">
                   <span className="text-gray-600 select-none">&gt;</span>
-                  <span className="text-pink-300 font-semibold w-24 sm:w-28 inline-block">{lang.language}</span>
+                  <span className="text-mint font-semibold w-24 sm:w-28 inline-block">{lang.language}</span>
                   <span className="text-gray-500">|</span>
                   <span className="text-gray-300">{lang.proficiency}</span>
                 </li>
@@ -504,20 +504,20 @@ export default function Home() {
           <CollapsibleSection
             title="recommendations"
             icon="★"
-            iconColor="text-yellow-300"
-            borderColor="border-yellow-400/50"
+            iconColor="text-peach"
+            borderColor="border-peach/40"
           >
             <div className="space-y-6">
               {resume.recommendations.map((rec, index) => (
-                <div key={index} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 hover:border-yellow-400/50 transition-colors">
+                <div key={index} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6 hover:border-peach/40 transition-colors">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-peach to-mint rounded-full flex items-center justify-center">
                         <span className="text-white font-mono text-lg">👤</span>
                       </div>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-yellow-300 font-mono mb-2">{rec.recommender}</h3>
+                      <h3 className="text-lg font-semibold text-peach font-mono mb-2">{rec.recommender}</h3>
                       <blockquote className="text-gray-300 text-sm leading-relaxed italic">
                         &ldquo;{rec.text}&rdquo;
                       </blockquote>
