@@ -234,6 +234,7 @@
     "databases": ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
     "devOps": ["AWS", "Docker", "Kubernetes", "Jenkins", "Git", "CI/CD"],
     "tools": ["RabbitMQ", "MQTT", "DataDog", "NATS", "Kibana", "Grafana", "SonarQube", "Postman", "Insomnia", "Swagger", "OpenAPI"],
+    "ai": ["Claude Code", "MCP", "Custom AI Skills", "Context Management", "Prompt Engineering", "AI-Assisted Development"],
     "services": ["Web Development", "SaaS Development", "Software Testing", "Database Development", "Application Development", "Custom Software Development", "Cloud Application Development"]
   },
   "projects": [],
