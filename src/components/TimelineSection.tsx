@@ -131,26 +131,27 @@ function ExpandedEntry({
   onCollapse: () => void;
 }) {
   return (
-    <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg px-3 py-3 sm:px-4 sm:py-4 hover:border-mint/40 transition-colors">
-      <button
-        type="button"
-        onClick={onCollapse}
-        className="flex flex-wrap items-baseline gap-x-2 gap-y-1 w-full text-left"
-        aria-label="Collapse entry"
-      >
-        <span className="text-gray-500">commit</span>
+    <div
+      className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg px-3 py-3 sm:px-4 sm:py-4 hover:border-mint/40 transition-colors cursor-pointer"
+      onClick={onCollapse}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onCollapse();
+        }
+      }}
+    >
+      <div className="flex flex-wrap items-baseline gap-x-2">
         <span className={`${hashColor}`}>{hash}</span>
-      </button>
-      <div className="mt-1 flex flex-wrap items-baseline gap-x-2">
-        <span className="text-gray-500 w-16 inline-block">Date:</span>
         <span className="text-mint">{dateRange}</span>
       </div>
-      <div className="mt-1 flex flex-wrap items-baseline gap-x-2">
-        <span className="text-gray-500 w-16 inline-block">Subject:</span>
+      <div className="mt-1">
         <span className={`${accentColor} font-semibold`}>{item.subject}</span>
       </div>
       {item.context && (
-        <div className="mt-0.5 ml-[4.5rem] text-gray-400 text-[0.7rem] sm:text-xs">{item.context}</div>
+        <div className="mt-0.5 text-gray-400 text-[0.7rem] sm:text-xs">{item.context}</div>
       )}
 
       {item.highlights && item.highlights.length > 0 && (

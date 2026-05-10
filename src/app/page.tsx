@@ -1,14 +1,27 @@
 'use client';
 
-import { getResumeData } from '@/utils/resume';
+import { getResumeData, type Locale } from '@/utils/resume';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import TimelineSection, { TimelineItem } from '@/components/TimelineSection';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { jsPDF } from 'jspdf';
 
 export default function Home() {
-  const resume = getResumeData();
+  const [locale, setLocale] = useState<Locale>('en');
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem('locale');
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (stored === 'en' || stored === 'ro') setLocale(stored);
+  }, []);
+
+  const switchLocale = (next: Locale) => {
+    setLocale(next);
+    window.localStorage.setItem('locale', next);
+  };
+
+  const resume = useMemo(() => getResumeData(locale), [locale]);
 
   const navigationItems = useMemo(() => [
     { href: '#work_experience', label: 'work_experience', icon: '>', accent: 'text-mint' },
@@ -214,12 +227,39 @@ export default function Home() {
                 <span className="text-gray-300 group-hover:text-white">{item.label}</span>
               </a>
             ))}
+            <div className="md:ml-auto flex items-center gap-1 px-1 py-1 bg-gray-900/60 border border-gray-700/60 rounded font-mono text-xs sm:text-sm">
+              <button
+                type="button"
+                onClick={() => switchLocale('en')}
+                aria-pressed={locale === 'en'}
+                className={`px-2 py-0.5 rounded transition-colors ${
+                  locale === 'en'
+                    ? 'bg-mint/20 text-mint'
+                    : 'text-gray-400 hover:text-mint'
+                }`}
+              >
+                en
+              </button>
+              <span className="text-gray-700" aria-hidden>|</span>
+              <button
+                type="button"
+                onClick={() => switchLocale('ro')}
+                aria-pressed={locale === 'ro'}
+                className={`px-2 py-0.5 rounded transition-colors ${
+                  locale === 'ro'
+                    ? 'bg-mint/20 text-mint'
+                    : 'text-gray-400 hover:text-mint'
+                }`}
+              >
+                ro
+              </button>
+            </div>
             <button
               onClick={() => {
                 generatePDF();
                 setIsMobileNavOpen(false);
               }}
-              className="ml-0 md:ml-auto px-3 py-1.5 bg-gray-900/60 border border-mint/40 rounded hover:bg-mint/10 hover:border-mint/60 transition-colors font-mono text-xs sm:text-sm flex items-center gap-2 text-mint"
+              className="px-3 py-1.5 bg-gray-900/60 border border-mint/40 rounded hover:bg-mint/10 hover:border-mint/60 transition-colors font-mono text-xs sm:text-sm flex items-center gap-2 text-mint"
             >
               <span>↓</span>
               <span>download_pdf</span>

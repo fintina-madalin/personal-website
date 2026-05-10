@@ -1,0 +1,253 @@
+{
+  "personalInfo": {
+    "name": "Bogdan-Madalin Fintina",
+    "title": "Inginer Software Agnostic",
+    "email": "fintina.bogdan@gmail.com",
+    "location": "Oradea, Bihor, România",
+    "summary": "Mereu mi-a plăcut să rezolv probleme — unul dintre motivele pentru care am ajuns să programez. Pe parcurs am avut ocazia să învăț o gamă largă de limbaje, tehnologii, unelte și procese. Părerea mea generală este că fiecare limbaj are scopul lui — totul se reduce la ce probleme încerci să rezolvi. În ultima perioadă m-am axat profund pe ingineria asistată de AI: proiectez skill-uri AI personalizate, unelte de management al contextului și fluxuri de agenți care ajută echipele să se miște mai rapid, să rămână aliniate și să se concentreze pe partea de muncă ce chiar are nevoie de un om. Mă bucur sincer să explorez intersecția dintre inginerie pragmatică și folosirea conștientă a AI-ului și sunt mereu deschis să împărtășesc ce învăț pe drum.",
+    "socialLinks": {
+      "github": "https://github.com/fintina-madalin",
+      "linkedin": "https://www.linkedin.com/in/fintina-madalin/",
+      "twitter": ""
+    }
+  },
+  "workExperience": [
+    {
+      "company": "Bitly",
+      "position": "Dezvoltator Software Senior",
+      "location": "Remote",
+      "contract_type": "Contract B2B full-time",
+      "startDate": "2025-08",
+      "endDate": "Prezent",
+      "highlights": [
+        { "text": "Construiesc funcționalități pe produsul QRCG, mizând pe un front-end TypeScript / React / Next.js susținut de servicii Golang pe AWS.", "kind": "story" },
+        { "text": "Particip la migrarea platformei de la un API PHP legacy către unul modern în Golang, plătind ani de datorie arhitecturală pe parcurs.", "kind": "decision" },
+        { "text": "Alături de echipă dezvolt skill-uri AI personalizate și unelte de management al contextului care chiar accelerează munca de zi cu zi.", "kind": "ai" }
+      ]
+    },
+    {
+      "company": "Tide",
+      "position": "Inginer Software Senior",
+      "location": "Remote",
+      "contract_type": "Contract B2B full-time",
+      "startDate": "2025-01",
+      "endDate": "2025-08",
+      "highlights": [
+        { "text": "Am îmbunătățit acoperirea testelor și calitatea codului prin adăugarea de teste unitare și refactorizarea modulelor legacy.", "kind": "story" },
+        { "text": "Am introdus pattern-uri de design și arhitectură care fac codul mai ușor de extins și de menținut.", "kind": "decision" }
+      ]
+    },
+    {
+      "company": "Trakosoft",
+      "position": "Inginer Software Senior",
+      "location": "Remote",
+      "contract_type": "Contract pe bază de proiect",
+      "startDate": "2024-01",
+      "endDate": "2025-03",
+      "highlights": [
+        { "text": "Am integrat Symfony ca o componentă nouă a stack-ului, îmbunătățind calitatea, mentenabilitatea și viabilitatea pe termen lung a sistemului.", "kind": "decision" },
+        { "text": "Am proiectat și livrat un serviciu care comunică cu API-ul ANAF e-Transport, permițând schimburi fluide de date și conformitate cu reglementările din România.", "kind": "story" },
+        { "text": "Am arhitectat un serviciu care trimite datele facturilor către autoritățile maghiare, automatizând conformitatea cu regulile fiscale locale.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Remote Tech",
+      "position": "Inginer Software Senior",
+      "location": "Remote",
+      "contract_type": "Angajare full-time",
+      "startDate": "2023-03",
+      "endDate": "2024-03",
+      "highlights": [
+        { "text": "Am obținut o creștere de 174% a responsivității API-ului prin optimizarea interogărilor de bază de date, a proceselor backend și a comunicării MQTT.", "kind": "metric" },
+        { "text": "Am condus tranziția către Symfony pentru platforma IoT, alegând-o pentru arhitectura solidă și ecosistemul potrivit.", "kind": "decision" },
+        { "text": "Am introdus Golang (ChirpStack) în stack pentru sarcini IoT lightweight și de înaltă performanță.", "kind": "decision" },
+        { "text": "Am ridicat infrastructura de mesagerie pe RabbitMQ și MQTT, plus pipeline-uri Jenkins de deployment pentru a fluidiza release-urile.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Beecoded",
+      "position": "Inginer Software Senior",
+      "location": "Remote",
+      "contract_type": "Contract pe bază de proiect",
+      "startDate": "2022-10",
+      "endDate": "2023-07",
+      "highlights": [
+        { "text": "Am oferit leadership tehnic și mentorat membrilor juniori ai echipei, ținând linia pe bune practici.", "kind": "story" },
+        { "text": "Am lucrat end-to-end cu React, Node.js, Laravel, Vue.js și VTEX.", "kind": "story" },
+        { "text": "Am optimizat performanța și scalabilitatea aplicațiilor prin cod mai curat, arhitectură mai bună și unelte potrivite.", "kind": "metric" },
+        { "text": "Am integrat platforme third-party precum VTEX pentru a livra experiențe de e-commerce fluente.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Bob Concierge",
+      "position": "Team Lead",
+      "location": "Remote",
+      "contract_type": "Contract B2B full-time",
+      "startDate": "2022-01",
+      "endDate": "2022-10",
+      "highlights": [
+        { "text": "Am condus o echipă de 3 dezvoltatori care livra aplicații web eficiente.", "kind": "story" },
+        { "text": "Am construit pe PHP 7.4, Symfony, MySQL, Redis, Podman, Kibana și Elasticsearch.", "kind": "story" },
+        { "text": "Am stabilit metodologii de planificare strategică și obiective clare pentru a optimiza fluxul de lucru al echipei.", "kind": "decision" },
+        { "text": "Am mentorat dezvoltatorii și am folosit metrici de performanță pentru a îmbunătăți scalabilitatea și fiabilitatea.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Vivre",
+      "position": "Inginer Backend Senior",
+      "location": "Remote",
+      "contract_type": "Contract B2B full-time",
+      "startDate": "2021-09",
+      "endDate": "2022-01",
+      "highlights": [
+        { "text": "Am intrat într-o echipă nouă cu misiunea de a migra un monolit către microservicii.", "kind": "story" },
+        { "text": "Am redesign-uit mecanismul de pricing end-to-end folosind două microservicii.", "kind": "decision" },
+        { "text": "Am construit un microserviciu de bridge între sistemul vechi și noua arhitectură.", "kind": "story" },
+        { "text": "Am livrat un microserviciu de calcul de prețuri bazat pe intervale de timp, preț de bază și diverse puncte de date (PHP 7.4, Symfony, MySQL, RabbitMQ, Yii2).", "kind": "story" }
+      ]
+    },
+    {
+      "company": "eMag",
+      "position": "Inginer Backend Senior",
+      "location": "București",
+      "contract_type": "Angajare full-time",
+      "startDate": "2020-01",
+      "endDate": "2021-09",
+      "highlights": [
+        { "text": "Am menținut tooling-ul CI/CD (Jenkins, Drone.io, SonarQube) pentru divizia Internal Apps and Processes.", "kind": "story" },
+        { "text": "Am menținut grid-ul Selenium care susținea toate testele de acceptare și integrare.", "kind": "story" },
+        { "text": "Am dezvoltat o platformă de testare de acceptare pe Codeception, un tool de verificare a propagării datelor și un sistem de scoring tehnic.", "kind": "story" },
+        { "text": "Am scris servlete pentru un grid Selenium cu auto-recuperare pe Kubernetes; pe parcurs am învățat Helm, Kibana și Grafana.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Sound Good Mobile",
+      "position": "Inginer Backend Senior",
+      "location": "București",
+      "contract_type": "Angajare full-time",
+      "startDate": "2018-10",
+      "endDate": "2020-01",
+      "highlights": [
+        { "text": "Am proiectat arhitectura sistemului împreună cu team lead-ul și am livrat mai multe API-uri și microservicii.", "kind": "decision" },
+        { "text": "Am construit interfețe interne pentru echipele de advertising și suport pentru a crește productivitatea.", "kind": "story" },
+        { "text": "Am integrat procesatori și gateway-uri de plată, plus straturi externe de antifraud.", "kind": "story" },
+        { "text": "Am implementat caching de conținut pe Redis și pipeline-uri Jenkins prin Groovy.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Daily Posts Copywriting",
+      "position": "Inginer Software Full Stack",
+      "location": "Remote",
+      "contract_type": "Contract pe bază de proiect",
+      "startDate": "2018-03",
+      "endDate": "2018-09",
+      "highlights": [
+        { "text": "Am preluat o platformă internă de mentorat de la o echipă offshore și am dus-o la final.", "kind": "story" },
+        { "text": "Am migrat backend-ul de la PHP simplu la Symfony cu Doctrine.", "kind": "decision" },
+        { "text": "Am închis găuri de securitate lăsate de deciziile arhitecturale anterioare.", "kind": "story" },
+        { "text": "Am reușit să integrez Symfony într-un proiect care era deja construit în proporție de 90%.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "ARKHAM Enterprises GmbH",
+      "position": "Inginer Software Full Stack",
+      "location": "Remote",
+      "contract_type": "Contract pe bază de proiect",
+      "startDate": "2017-10",
+      "endDate": "2018-02",
+      "highlights": [
+        { "text": "Am construit plugin-uri și addon-uri WordPress pentru o varietate de clienți.", "kind": "story" },
+        { "text": "Am menținut o bază de cod legacy și am condus code reviews pentru creșterea echipei.", "kind": "story" },
+        { "text": "Am rescris backend-uri de proiect, mutând logica în plugin-uri WordPress și addon-uri Visual Composer.", "kind": "decision" },
+        { "text": "Am acumulat Twig, Symfony 2.8, Doctrine, Docker, Git și am avut prima întâlnire reală cu React.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Deximo",
+      "position": "Dezvoltator Web",
+      "location": "Constanța",
+      "contract_type": "Angajare full-time",
+      "startDate": "2014-09",
+      "endDate": "2016-09",
+      "highlights": [
+        { "text": "Am construit și menținut o platformă pentru o agenție imobiliară.", "kind": "story" },
+        { "text": "Am implementat API-uri care publicau automat anunțuri pe portaluri imobiliare.", "kind": "story" },
+        { "text": "Am integrat platforme precum imobiliare.ro, titirez.ro, storia.ro și homezz.ro.", "kind": "story" },
+        { "text": "Am învățat WordPress core, dezvoltare de plugin-uri și teme, jQuery și Bootstrap.", "kind": "story" }
+      ]
+    },
+    {
+      "company": "Grup Proprietati Perfecte",
+      "position": "Designer Grafic",
+      "location": "Constanța",
+      "contract_type": "Angajare full-time",
+      "startDate": "2013-06",
+      "endDate": "2014-08",
+      "highlights": [
+        { "text": "Am creat grafică pentru reviste, flyere și materiale de marketing.", "kind": "story" },
+        { "text": "Am publicat proprietăți noi pe platforme imobiliare.", "kind": "story" },
+        { "text": "Am prins din mers HTML, CSS, JavaScript, PHP și MySQL.", "kind": "story" },
+        { "text": "Am implementat API-uri în platforma imobiliară.", "kind": "story" }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Udemy și diverse platforme online de învățare",
+      "degree": "Dezvoltare Software Autodidact",
+      "location": "Constanța",
+      "startDate": "2013-09",
+      "endDate": "Prezent"
+    },
+    {
+      "institution": "Link Academy",
+      "degree": "Dezvoltare Mobilă Java Android",
+      "location": "București",
+      "startDate": "2015-09",
+      "endDate": "2016-09"
+    },
+    {
+      "institution": "Academia Navală Mircea cel Bătrân",
+      "degree": "Ofițer de Marină - Cadet",
+      "location": "Constanța",
+      "startDate": "2010-09",
+      "endDate": "2013-09"
+    },
+    {
+      "institution": "Colegiul Național de Arte Regina Maria",
+      "degree": "Procesarea Imaginii Digitale",
+      "location": "Constanța",
+      "startDate": "2006-09",
+      "endDate": "2010-09"
+    }
+  ],
+  "skills": {
+    "programmingLanguages": ["PHP", "JavaScript", "Java", "Python", "Golang"],
+    "frontend": ["React", "Next.js", "jQuery", "HTML", "CSS", "Bootstrap", "Tailwind CSS"],
+    "backend": ["Symfony", "Laravel", "Node.js", "Flask", "Django", "FastAPI", "Spring Boot"],
+    "databases": ["MySQL", "PostgreSQL", "MongoDB", "Redis"],
+    "devOps": ["AWS", "Docker", "Kubernetes", "Jenkins", "Git", "CI/CD"],
+    "tools": ["RabbitMQ", "MQTT", "DataDog", "NATS", "Kibana", "Grafana", "SonarQube", "Postman", "Insomnia", "Swagger", "OpenAPI"],
+    "ai": ["Claude Code", "MCP", "Skill-uri AI Personalizate", "Management al Contextului", "Prompt Engineering", "Dezvoltare Asistată de AI"],
+    "services": ["Dezvoltare Web", "Dezvoltare SaaS", "Testare Software", "Dezvoltare Baze de Date", "Dezvoltare de Aplicații", "Dezvoltare Software Personalizat", "Dezvoltare de Aplicații Cloud"]
+  },
+  "projects": [],
+  "certifications": [
+    {
+      "name": "Certificare React",
+      "issuer": "Luxoft",
+      "date": "2021-07"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Engleză",
+      "proficiency": "Avansat"
+    },
+    {
+      "language": "Română",
+      "proficiency": "Nativ"
+    }
+  ],
+  "recommendations": []
+}
