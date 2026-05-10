@@ -6,16 +6,6 @@ import TimelineSection, { TimelineItem } from '@/components/TimelineSection';
 import { useMemo, useState } from 'react';
 import { jsPDF } from 'jspdf';
 
-function PromptLine({ command }: { command: string }) {
-  return (
-    <div className="flex items-baseline gap-2 text-xs sm:text-sm">
-      <span className="text-mint">~/resume</span>
-      <span className="text-gray-600">$</span>
-      <span className="text-gray-200">{command}</span>
-    </div>
-  );
-}
-
 export default function Home() {
   const resume = getResumeData();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -212,14 +202,6 @@ export default function Home() {
       {/* Navigation Section */}
       <div className={`fixed top-0 left-0 right-0 z-20 bg-gray-950/90 backdrop-blur-md border-b border-gray-800 transition-transform duration-300 ${isMobileNavOpen ? 'translate-y-0' : '-translate-y-full'} md:sticky md:translate-y-0`}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <div className="hidden md:flex items-center gap-2 font-mono text-xs text-gray-500 mb-2">
-            <span className="text-mint">~/resume</span>
-            <span className="text-gray-600">$</span>
-            <span className="text-gray-400">git</span>
-            <span className="text-gray-300">checkout</span>
-            <span className="text-gray-600">·</span>
-            <span className="text-gray-500 italic">pick a section</span>
-          </div>
           <div className="flex flex-col md:flex-row md:flex-wrap md:justify-start gap-2 md:items-center">
             {navigationItems.map((item) => (
               <a
@@ -256,95 +238,62 @@ export default function Home() {
 
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Header Section — terminal window */}
-        <header className="mb-8 md:mb-12">
-          <div className="rounded-lg overflow-hidden border border-gray-700 bg-gray-900/70 backdrop-blur-sm shadow-xl">
+        <header className="mb-6 md:mb-8">
+          <div className="rounded-lg overflow-hidden border border-gray-800 bg-gray-900/50 backdrop-blur-sm">
             {/* terminal title bar */}
-            <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 border-b border-gray-700">
-              <span className="w-3 h-3 rounded-full bg-peach" aria-hidden />
-              <span className="w-3 h-3 rounded-full bg-mint/60" aria-hidden />
-              <span className="w-3 h-3 rounded-full bg-mint" aria-hidden />
-              <span className="ml-2 font-mono text-xs text-gray-400 truncate">
-                bash — fintina@portfolio: ~/resume
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-900/70 border-b border-gray-800">
+              <span className="w-2.5 h-2.5 rounded-full bg-peach" aria-hidden />
+              <span className="w-2.5 h-2.5 rounded-full bg-mint/60" aria-hidden />
+              <span className="w-2.5 h-2.5 rounded-full bg-gray-600" aria-hidden />
+              <span className="ml-2 font-mono text-[0.7rem] text-gray-500 truncate">
+                ~/resume
               </span>
             </div>
 
             {/* terminal body */}
-            <div className="px-4 py-5 sm:px-6 sm:py-6 font-mono text-sm">
-              {/* banner */}
-              <pre className="text-mint text-[0.6rem] sm:text-xs md:text-sm leading-tight overflow-x-auto whitespace-pre" aria-hidden>
-{`╭──────────────────────────────────────────────╮
-│  ${resume.personalInfo.name.padEnd(43)}│
-│  ${resume.personalInfo.title.padEnd(43)}│
-╰──────────────────────────────────────────────╯`}
-              </pre>
-              <h1 className="sr-only">{resume.personalInfo.name}</h1>
+            <div className="px-4 py-5 sm:px-6 sm:py-6 font-mono">
+              <h1 className="text-2xl sm:text-3xl font-bold text-mint leading-tight">
+                {resume.personalInfo.name}
+              </h1>
+              <p className="mt-1 text-sm sm:text-base text-gray-400">
+                {resume.personalInfo.title}
+              </p>
 
-              {/* whoami */}
-              <div className="mt-4 sm:mt-5">
-                <PromptLine command="whoami" />
-                <div className="pl-3 mt-1 flex items-center gap-2 text-gray-300">
-                  <span className="w-2 h-2 bg-mint rounded-full animate-pulse" aria-hidden />
-                  <span>{resume.personalInfo.name}</span>
-                  <span className="text-gray-600">·</span>
+              <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-mint rounded-full animate-pulse" aria-hidden />
                   <span className="text-gray-400">{resume.personalInfo.location}</span>
-                </div>
+                </span>
+                <span className="text-gray-700">·</span>
+                <a
+                  href={`mailto:${resume.personalInfo.email}`}
+                  className="text-gray-400 hover:text-mint transition-colors"
+                >
+                  {resume.personalInfo.email}
+                </a>
+                <span className="text-gray-700">·</span>
+                <a
+                  href={resume.personalInfo.socialLinks.github || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-mint transition-colors"
+                >
+                  github
+                </a>
+                <span className="text-gray-700">·</span>
+                <a
+                  href={resume.personalInfo.socialLinks.linkedin || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-mint transition-colors"
+                >
+                  linkedin
+                </a>
               </div>
 
-              {/* contact --list */}
-              <div className="mt-4 sm:mt-5">
-                <PromptLine command="contact --list" />
-                <ul className="pl-3 mt-1 space-y-0.5 text-xs sm:text-sm">
-                  <li className="flex items-baseline gap-2">
-                    <span className="text-gray-600 select-none">├──</span>
-                    <span className="text-gray-400 w-16 sm:w-20 inline-block">github</span>
-                    <a
-                      href={resume.personalInfo.socialLinks.github || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-mint hover:text-white hover:underline truncate"
-                    >
-                      github.com/fintina-madalin
-                    </a>
-                  </li>
-                  <li className="flex items-baseline gap-2">
-                    <span className="text-gray-600 select-none">├──</span>
-                    <span className="text-gray-400 w-16 sm:w-20 inline-block">linkedin</span>
-                    <a
-                      href={resume.personalInfo.socialLinks.linkedin || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-mint hover:text-white hover:underline truncate"
-                    >
-                      linkedin.com/in/fintina-madalin
-                    </a>
-                  </li>
-                  <li className="flex items-baseline gap-2">
-                    <span className="text-gray-600 select-none">└──</span>
-                    <span className="text-gray-400 w-16 sm:w-20 inline-block">email</span>
-                    <a
-                      href={`mailto:${resume.personalInfo.email}`}
-                      className="text-mint hover:text-white hover:underline truncate"
-                    >
-                      {resume.personalInfo.email || 'contact@example.com'}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-
-              {/* about_me */}
-              <div className="mt-4 sm:mt-5">
-                <PromptLine command="cat about_me.md" />
-                <p className="pl-3 mt-1 text-gray-300 leading-relaxed text-xs sm:text-sm">
-                  {resume.personalInfo.summary}
-                </p>
-              </div>
-
-              {/* idle prompt */}
-              <div className="mt-5 flex items-center gap-2 text-xs">
-                <span className="text-mint">~/resume</span>
-                <span className="text-gray-600">$</span>
-                <span className="inline-block w-2 h-4 bg-gray-300 animate-pulse" aria-hidden />
-              </div>
+              <p className="mt-5 text-gray-300 leading-relaxed text-sm">
+                {resume.personalInfo.summary}
+              </p>
             </div>
           </div>
         </header>
@@ -365,7 +314,7 @@ export default function Home() {
               endDate: job.endDate,
               highlights: job.highlights,
             }))}
-            defaultExpanded={3}
+            defaultExpanded={2}
             accentColor="text-mint"
           />
         </CollapsibleSection>
@@ -377,14 +326,9 @@ export default function Home() {
           icon="#"
           iconColor="text-peach"
           borderColor="border-peach/40"
+          defaultExpanded={false}
         >
-          <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
-            <div className="flex items-center gap-2 mb-3 text-gray-500">
-              <span className="text-mint">~/resume/skills</span>
-              <span>$</span>
-              <span className="text-gray-400">tree</span>
-              <span className="text-gray-600">--depth=2</span>
-            </div>
+          <div className="font-mono text-xs sm:text-sm bg-gray-900/30 border border-gray-800 rounded-md px-3 py-3">
             <div className="text-peach mb-1">skills/</div>
             {(() => {
               const categories = Object.entries(resume.skills) as [string, string[]][];
@@ -430,7 +374,7 @@ export default function Home() {
               startDate: edu.startDate,
               endDate: edu.endDate,
             }))}
-            defaultExpanded={2}
+            defaultExpanded={1}
             accentColor="text-mint"
           />
         </CollapsibleSection>
@@ -442,15 +386,9 @@ export default function Home() {
           icon="%"
           iconColor="text-peach"
           borderColor="border-peach/40"
+          defaultExpanded={false}
         >
-          <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
-            <div className="flex items-center gap-2 mb-3 text-gray-500">
-              <span className="text-mint">~/resume/certifications</span>
-              <span>$</span>
-              <span className="text-gray-400">git</span>
-              <span className="text-gray-300">log</span>
-              <span className="text-gray-600">--oneline</span>
-            </div>
+          <div className="font-mono text-xs sm:text-sm bg-gray-900/30 border border-gray-800 rounded-md px-3 py-3">
             <ul className="space-y-1.5">
               {resume.certifications.map((cert, index) => {
                 const hash = (cert.name + cert.issuer + cert.date)
@@ -478,14 +416,9 @@ export default function Home() {
           icon="&amp;"
           iconColor="text-mint"
           borderColor="border-mint/40"
+          defaultExpanded={false}
         >
-          <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
-            <div className="flex items-center gap-2 mb-3 text-gray-500">
-              <span className="text-mint">~/resume/languages</span>
-              <span>$</span>
-              <span className="text-gray-400">cat</span>
-              <span className="text-gray-300">languages.tsv</span>
-            </div>
+          <div className="font-mono text-xs sm:text-sm bg-gray-900/30 border border-gray-800 rounded-md px-3 py-3">
             <ul className="space-y-1.5">
               {resume.languages.map((lang, index) => (
                 <li key={index} className="flex items-baseline gap-3 hover:bg-gray-800/40 rounded-sm px-1 transition-colors">
