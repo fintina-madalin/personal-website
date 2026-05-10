@@ -6,56 +6,26 @@ import TimelineSection, { TimelineItem } from '@/components/TimelineSection';
 import { useMemo, useState } from 'react';
 import { jsPDF } from 'jspdf';
 
+function PromptLine({ command }: { command: string }) {
+  return (
+    <div className="flex items-baseline gap-2 text-xs sm:text-sm">
+      <span className="text-green-400">~/resume</span>
+      <span className="text-gray-600">$</span>
+      <span className="text-gray-200">{command}</span>
+    </div>
+  );
+}
+
 export default function Home() {
   const resume = getResumeData();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   const navigationItems = useMemo(() => [
-    {
-      href: '#work_experience',
-      label: 'work_experience',
-      icon: '>',
-      bgColor: 'bg-blue-900/30',
-      textColor: 'text-blue-300',
-      borderColor: 'border-blue-700/50',
-      hoverColor: 'hover:bg-blue-800/50'
-    },
-    {
-      href: '#skills',
-      label: 'skills',
-      icon: '#',
-      bgColor: 'bg-purple-900/30',
-      textColor: 'text-purple-300',
-      borderColor: 'border-purple-700/50',
-      hoverColor: 'hover:bg-purple-800/50'
-    },
-    {
-      href: '#education',
-      label: 'education',
-      icon: '@',
-      bgColor: 'bg-cyan-900/30',
-      textColor: 'text-cyan-300',
-      borderColor: 'border-cyan-700/50',
-      hoverColor: 'hover:bg-cyan-800/50'
-    },
-    {
-      href: '#certifications',
-      label: 'certifications',
-      icon: '%',
-      bgColor: 'bg-orange-900/30',
-      textColor: 'text-orange-300',
-      borderColor: 'border-orange-700/50',
-      hoverColor: 'hover:bg-orange-800/50'
-    },
-    {
-      href: '#languages',
-      label: 'languages',
-      icon: '&',
-      bgColor: 'bg-pink-900/30',
-      textColor: 'text-pink-300',
-      borderColor: 'border-pink-700/50',
-      hoverColor: 'hover:bg-pink-800/50'
-    }
+    { href: '#work_experience', label: 'work_experience', icon: '>', accent: 'text-blue-400' },
+    { href: '#skills', label: 'skills', icon: '#', accent: 'text-purple-400' },
+    { href: '#education', label: 'education', icon: '@', accent: 'text-cyan-400' },
+    { href: '#certifications', label: 'certifications', icon: '%', accent: 'text-orange-400' },
+    { href: '#languages', label: 'languages', icon: '&', accent: 'text-pink-400' },
   ], []);
 
   const handleNavClick = () => {
@@ -240,18 +210,26 @@ export default function Home() {
       </button>
 
       {/* Navigation Section */}
-      <div className={`fixed top-0 left-0 right-0 z-20 bg-gray-900/90 backdrop-blur-md border-b border-gray-700 transition-transform duration-300 ${isMobileNavOpen ? 'translate-y-0' : '-translate-y-full'} md:sticky md:translate-y-0`}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex flex-col md:flex-row md:justify-center gap-3 md:items-center">
+      <div className={`fixed top-0 left-0 right-0 z-20 bg-gray-950/90 backdrop-blur-md border-b border-gray-800 transition-transform duration-300 ${isMobileNavOpen ? 'translate-y-0' : '-translate-y-full'} md:sticky md:translate-y-0`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <div className="hidden md:flex items-center gap-2 font-mono text-xs text-gray-500 mb-2">
+            <span className="text-green-500">~/resume</span>
+            <span className="text-gray-600">$</span>
+            <span className="text-gray-400">git</span>
+            <span className="text-gray-300">checkout</span>
+            <span className="text-gray-600">·</span>
+            <span className="text-gray-500 italic">pick a section</span>
+          </div>
+          <div className="flex flex-col md:flex-row md:flex-wrap md:justify-start gap-2 md:items-center">
             {navigationItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={handleNavClick}
-                className={`px-4 py-2 ${item.bgColor} ${item.textColor} border ${item.borderColor} rounded ${item.hoverColor} transition-colors font-mono text-sm text-center flex items-center justify-center space-x-2`}
+                className="group px-3 py-1.5 bg-gray-900/60 border border-gray-700/60 rounded hover:bg-gray-800/80 hover:border-gray-500 transition-colors font-mono text-xs sm:text-sm flex items-center gap-2"
               >
-                <span className="font-mono">{item.icon}</span>
-                <span>{item.label}</span>
+                <span className={`${item.accent}`}>{item.icon}</span>
+                <span className="text-gray-300 group-hover:text-white">{item.label}</span>
               </a>
             ))}
             <button
@@ -259,9 +237,9 @@ export default function Home() {
                 generatePDF();
                 setIsMobileNavOpen(false);
               }}
-              className="px-4 py-2 bg-green-900/30 text-green-300 border border-green-700/50 rounded hover:bg-green-800/50 transition-colors font-mono text-sm flex items-center justify-center space-x-2"
+              className="ml-0 md:ml-auto px-3 py-1.5 bg-gray-900/60 border border-green-700/40 rounded hover:bg-green-900/30 hover:border-green-500/60 transition-colors font-mono text-xs sm:text-sm flex items-center gap-2 text-green-300"
             >
-              <span className="font-mono">↓</span>
+              <span>↓</span>
               <span>download_pdf</span>
             </button>
           </div>
@@ -277,43 +255,96 @@ export default function Home() {
       )}
 
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <header className="text-center mb-8 md:mb-12 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg blur-xl"></div>
-          <div className="relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 sm:p-6 md:p-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
-              {resume.personalInfo.name}
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-4 font-mono">{resume.personalInfo.title}</p>
-            <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-gray-400 text-sm">
-              <span className="flex items-center justify-center">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                {resume.personalInfo.location}
+        {/* Header Section — terminal window */}
+        <header className="mb-8 md:mb-12">
+          <div className="rounded-lg overflow-hidden border border-gray-700 bg-gray-900/70 backdrop-blur-sm shadow-xl">
+            {/* terminal title bar */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-800/80 border-b border-gray-700">
+              <span className="w-3 h-3 rounded-full bg-red-500/80" aria-hidden />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/80" aria-hidden />
+              <span className="w-3 h-3 rounded-full bg-green-500/80" aria-hidden />
+              <span className="ml-2 font-mono text-xs text-gray-400 truncate">
+                bash — fintina@portfolio: ~/resume
               </span>
-              <span className="hidden sm:inline">•</span>
-              <a href={`mailto:${resume.personalInfo.email}`} className="hover:text-blue-400 transition-colors">
-                {resume.personalInfo.email || 'contact@example.com'}
-              </a>
             </div>
-            <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-6 mt-6">
-              <a href={resume.personalInfo.socialLinks.github || '#'} target="_blank" rel="noopener noreferrer" 
-                 className="text-gray-400 hover:text-white transition-colors flex items-center justify-center space-x-2">
-                <span className="font-mono text-sm">[GitHub]</span>
-              </a>
-              <a href={resume.personalInfo.socialLinks.linkedin || '#'} target="_blank" rel="noopener noreferrer" 
-                 className="text-gray-400 hover:text-blue-400 transition-colors flex items-center justify-center space-x-2">
-                <span className="font-mono text-sm">[LinkedIn]</span>
-              </a>
-            </div>
-            
-            {/* About Me Section */}
-            <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-gray-600">
-              <h2 className="text-base md:text-lg font-bold text-green-400 mb-3 flex items-center justify-center">
-                <span className="font-mono">about_me</span>
-              </h2>
-              <p className="text-gray-300 leading-relaxed font-mono text-xs sm:text-sm max-w-3xl mx-auto px-2 sm:px-0">
-                {resume.personalInfo.summary}
-              </p>
+
+            {/* terminal body */}
+            <div className="px-4 py-5 sm:px-6 sm:py-6 font-mono text-sm">
+              {/* banner */}
+              <pre className="text-blue-400 text-[0.6rem] sm:text-xs md:text-sm leading-tight overflow-x-auto whitespace-pre" aria-hidden>
+{`╭──────────────────────────────────────────────╮
+│  ${resume.personalInfo.name.padEnd(43)}│
+│  ${resume.personalInfo.title.padEnd(43)}│
+╰──────────────────────────────────────────────╯`}
+              </pre>
+              <h1 className="sr-only">{resume.personalInfo.name}</h1>
+
+              {/* whoami */}
+              <div className="mt-4 sm:mt-5">
+                <PromptLine command="whoami" />
+                <div className="pl-3 mt-1 flex items-center gap-2 text-gray-300">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" aria-hidden />
+                  <span>{resume.personalInfo.name}</span>
+                  <span className="text-gray-600">·</span>
+                  <span className="text-gray-400">{resume.personalInfo.location}</span>
+                </div>
+              </div>
+
+              {/* contact --list */}
+              <div className="mt-4 sm:mt-5">
+                <PromptLine command="contact --list" />
+                <ul className="pl-3 mt-1 space-y-0.5 text-xs sm:text-sm">
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-gray-600 select-none">├──</span>
+                    <span className="text-gray-400 w-16 sm:w-20 inline-block">github</span>
+                    <a
+                      href={resume.personalInfo.socialLinks.github || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-300 hover:text-white hover:underline truncate"
+                    >
+                      github.com/fintina-madalin
+                    </a>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-gray-600 select-none">├──</span>
+                    <span className="text-gray-400 w-16 sm:w-20 inline-block">linkedin</span>
+                    <a
+                      href={resume.personalInfo.socialLinks.linkedin || '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-300 hover:text-white hover:underline truncate"
+                    >
+                      linkedin.com/in/fintina-madalin
+                    </a>
+                  </li>
+                  <li className="flex items-baseline gap-2">
+                    <span className="text-gray-600 select-none">└──</span>
+                    <span className="text-gray-400 w-16 sm:w-20 inline-block">email</span>
+                    <a
+                      href={`mailto:${resume.personalInfo.email}`}
+                      className="text-blue-300 hover:text-white hover:underline truncate"
+                    >
+                      {resume.personalInfo.email || 'contact@example.com'}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* about_me */}
+              <div className="mt-4 sm:mt-5">
+                <PromptLine command="cat about_me.md" />
+                <p className="pl-3 mt-1 text-gray-300 leading-relaxed text-xs sm:text-sm">
+                  {resume.personalInfo.summary}
+                </p>
+              </div>
+
+              {/* idle prompt */}
+              <div className="mt-5 flex items-center gap-2 text-xs">
+                <span className="text-green-400">~/resume</span>
+                <span className="text-gray-600">$</span>
+                <span className="inline-block w-2 h-4 bg-gray-300 animate-pulse" aria-hidden />
+              </div>
             </div>
           </div>
         </header>
@@ -347,24 +378,40 @@ export default function Home() {
           iconColor="text-purple-400"
           borderColor="border-purple-500/50"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-            {Object.entries(resume.skills).map(([category, skills]) => (
-              <div key={category} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 md:p-6 hover:border-purple-500/50 transition-colors">
-                <h3 className="text-base md:text-lg font-semibold text-purple-400 mb-3 font-mono">
-                  {category.replace(/([A-Z])/g, '_$1').toLowerCase()}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map((skill: string, index: number) => (
-                    <span
-                      key={index}
-                      className="px-2 md:px-3 py-1 bg-gray-700/50 text-gray-300 border border-gray-600 rounded-md text-xs sm:text-sm font-mono hover:border-blue-500/50 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
+            <div className="flex items-center gap-2 mb-3 text-gray-500">
+              <span className="text-green-400">~/resume/skills</span>
+              <span>$</span>
+              <span className="text-gray-400">tree</span>
+              <span className="text-gray-600">--depth=2</span>
+            </div>
+            <div className="text-purple-400 mb-1">skills/</div>
+            {(() => {
+              const categories = Object.entries(resume.skills) as [string, string[]][];
+              return categories.map(([category, skills], catIdx) => {
+                const isLastCat = catIdx === categories.length - 1;
+                const branch = isLastCat ? '└──' : '├──';
+                const childPrefix = isLastCat ? '    ' : '│   ';
+                return (
+                  <div key={category}>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-gray-600 select-none">{branch}</span>
+                      <span className="text-purple-300">{category.replace(/([A-Z])/g, '_$1').toLowerCase()}/</span>
+                    </div>
+                    {skills.map((skill, i) => {
+                      const isLastSkill = i === skills.length - 1;
+                      const skillBranch = isLastSkill ? '└──' : '├──';
+                      return (
+                        <div key={i} className="flex items-baseline gap-2 hover:bg-gray-800/40 rounded-sm px-1 transition-colors">
+                          <span className="text-gray-600 select-none whitespace-pre">{childPrefix}{skillBranch}</span>
+                          <span className="text-gray-300">{skill}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              });
+            })()}
           </div>
         </CollapsibleSection>
 
@@ -396,14 +443,31 @@ export default function Home() {
           iconColor="text-orange-400"
           borderColor="border-orange-500/50"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-            {resume.certifications.map((cert, index) => (
-              <div key={index} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 md:p-6 hover:border-orange-500/50 transition-colors">
-                <h3 className="text-base md:text-lg font-semibold text-orange-400 font-mono">{cert.name}</h3>
-                <p className="text-gray-300 font-mono text-sm">{cert.issuer}</p>
-                <p className="text-green-400 font-mono text-xs">{cert.date}</p>
-              </div>
-            ))}
+          <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
+            <div className="flex items-center gap-2 mb-3 text-gray-500">
+              <span className="text-green-400">~/resume/certifications</span>
+              <span>$</span>
+              <span className="text-gray-400">git</span>
+              <span className="text-gray-300">log</span>
+              <span className="text-gray-600">--oneline</span>
+            </div>
+            <ul className="space-y-1.5">
+              {resume.certifications.map((cert, index) => {
+                const hash = (cert.name + cert.issuer + cert.date)
+                  .split('')
+                  .reduce((h, c) => ((h << 5) + h + c.charCodeAt(0)) & 0xffffffff, 5381);
+                const shortHash = Math.abs(hash).toString(16).padStart(7, '0').slice(0, 7);
+                return (
+                  <li key={index} className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 hover:bg-gray-800/40 rounded-sm px-1 transition-colors">
+                    <span className="text-amber-400">{shortHash}</span>
+                    <span className="text-green-400/80">{cert.date}</span>
+                    <span className="text-orange-300 font-semibold">{cert.name}</span>
+                    <span className="text-gray-500">·</span>
+                    <span className="text-gray-400">{cert.issuer}</span>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </CollapsibleSection>
 
@@ -415,13 +479,23 @@ export default function Home() {
           iconColor="text-pink-400"
           borderColor="border-pink-500/50"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
-            {resume.languages.map((lang, index) => (
-              <div key={index} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 md:p-6 hover:border-pink-500/50 transition-colors">
-                <h3 className="text-base md:text-lg font-semibold text-pink-400 font-mono">{lang.language}</h3>
-                <p className="text-gray-300 font-mono text-sm">{lang.proficiency}</p>
-              </div>
-            ))}
+          <div className="font-mono text-xs sm:text-sm bg-gray-900/40 border border-gray-800 rounded-md px-3 py-3 sm:px-4 sm:py-4">
+            <div className="flex items-center gap-2 mb-3 text-gray-500">
+              <span className="text-green-400">~/resume/languages</span>
+              <span>$</span>
+              <span className="text-gray-400">cat</span>
+              <span className="text-gray-300">languages.tsv</span>
+            </div>
+            <ul className="space-y-1.5">
+              {resume.languages.map((lang, index) => (
+                <li key={index} className="flex items-baseline gap-3 hover:bg-gray-800/40 rounded-sm px-1 transition-colors">
+                  <span className="text-gray-600 select-none">&gt;</span>
+                  <span className="text-pink-300 font-semibold w-24 sm:w-28 inline-block">{lang.language}</span>
+                  <span className="text-gray-500">|</span>
+                  <span className="text-gray-300">{lang.proficiency}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </CollapsibleSection>
 

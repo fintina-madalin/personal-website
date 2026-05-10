@@ -12,48 +12,60 @@ interface CollapsibleSectionProps {
   id?: string;
 }
 
-export default function CollapsibleSection({ 
-  title, 
-  icon, 
-  iconColor, 
-  borderColor, 
-  children, 
+export default function CollapsibleSection({
+  title,
+  icon,
+  iconColor,
+  borderColor,
+  children,
   defaultExpanded = true,
-  id
+  id,
 }: CollapsibleSectionProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
   return (
-    <section id={id} className="mb-12">
+    <section id={id} className="mb-10 md:mb-14">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`w-full text-left flex items-center justify-between p-4 rounded-lg border ${borderColor} bg-gray-800/30 hover:bg-gray-800/50 transition-all duration-300 mb-4`}
+        className={`w-full text-left group rounded-md border ${borderColor} bg-gray-900/40 hover:bg-gray-900/70 transition-colors px-3 py-2 sm:px-4 sm:py-3 mb-4`}
+        aria-expanded={isExpanded}
       >
-        <h2 className="text-2xl font-bold text-white flex items-center">
-          <span className={`${iconColor} mr-2 font-mono`}>{icon}</span>
-          <span className="font-mono">{title}</span>
-        </h2>
-        <div className="flex items-center space-x-2">
-          <span className={`text-xs font-mono ${iconColor}`}>
-            {isExpanded ? '[collapse]' : '[expand]'}
-          </span>
-          <span 
-            className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-0' : 'rotate-180'} ${iconColor} font-mono text-lg`}
-          >
-            ▼
-          </span>
+        <div className="flex items-center justify-between gap-3 font-mono text-sm sm:text-base">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-green-400 flex-shrink-0">~/resume</span>
+            <span className="text-gray-500 flex-shrink-0">$</span>
+            <span className="text-gray-400 flex-shrink-0">open</span>
+            <span className={`${iconColor} flex-shrink-0`} aria-hidden>{icon}</span>
+            <span className="text-white font-semibold truncate">{title}</span>
+            <span className={`ml-1 text-xs ${iconColor} opacity-70 hidden sm:inline`}>
+              {isExpanded ? '--full' : '--collapsed'}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className={`text-[0.65rem] sm:text-xs ${iconColor} opacity-80`}>
+              {isExpanded ? '[expanded]' : '[collapsed]'}
+            </span>
+            <span
+              className={`transform transition-transform duration-300 ${
+                isExpanded ? 'rotate-0' : '-rotate-90'
+              } ${iconColor} text-base`}
+              aria-hidden
+            >
+              ▾
+            </span>
+          </div>
         </div>
       </button>
-      
-      <div 
+
+      <div
         className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          isExpanded ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'
+          isExpanded ? 'max-h-[6000px] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="pb-4">
+        <div className="pb-4 pl-2 sm:pl-3 border-l border-gray-800">
           {children}
         </div>
       </div>
     </section>
   );
-} 
+}
