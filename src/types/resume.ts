@@ -12,6 +12,13 @@ export interface PersonalInfo {
   };
 }
 
+export type HighlightKind = "ai" | "metric" | "decision" | "story";
+
+export interface Highlight {
+  text: string;
+  kind: HighlightKind;
+}
+
 export interface WorkExperience {
   company: string;
   position: string;
@@ -19,7 +26,7 @@ export interface WorkExperience {
   contract_type: string;
   startDate: string;
   endDate: string;
-  highlights: string[];
+  highlights: Highlight[];
 }
 
 export interface Education {
@@ -38,6 +45,7 @@ export interface Skills {
   databases: string[];
   devOps: string[];
   tools: string[];
+  ai?: string[];
   services?: string[];
 }
 

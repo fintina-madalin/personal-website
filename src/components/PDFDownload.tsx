@@ -77,7 +77,7 @@ export default function PDFDownload({ resume }: PDFDownloadProps) {
           doc.addPage();
           yPosition = 20;
         }
-        yPosition = addWrappedText(`• ${highlight}`, margin + 5, yPosition, contentWidth - 5, 9);
+        yPosition = addWrappedText(`• ${highlight.text}`, margin + 5, yPosition, contentWidth - 5, 9);
         yPosition += 2;
       });
       yPosition += 5;

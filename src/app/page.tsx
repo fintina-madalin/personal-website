@@ -2,6 +2,7 @@
 
 import { getResumeData } from '@/utils/resume';
 import CollapsibleSection from '@/components/CollapsibleSection';
+import TimelineSection, { TimelineItem } from '@/components/TimelineSection';
 import { useMemo, useState } from 'react';
 import { jsPDF } from 'jspdf';
 
@@ -130,7 +131,7 @@ export default function Home() {
           doc.addPage();
           yPosition = 20;
         }
-        yPosition = addWrappedText(`• ${highlight}`, margin + 5, yPosition, contentWidth - 5, 9);
+        yPosition = addWrappedText(`• ${highlight.text}`, margin + 5, yPosition, contentWidth - 5, 9);
         yPosition += 2;
       });
       yPosition += 5;
@@ -325,32 +326,17 @@ export default function Home() {
           iconColor="text-blue-400"
           borderColor="border-blue-500/50"
         >
-          <div className="space-y-4 md:space-y-6">
-            {resume.workExperience.map((job, index) => (
-              <div key={index} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 md:p-6 hover:border-blue-500/50 transition-colors">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4 space-y-2 md:space-y-0">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-blue-400 font-mono">{job.position}</h3>
-                    <p className="text-gray-300 font-mono text-sm">{job.company} | {job.contract_type}</p>
-                  </div>
-                  <div className="md:text-right">
-                    <p className="text-gray-400 font-mono text-sm">{job.location}</p>
-                    <p className="text-green-400 font-mono text-xs">
-                      {job.startDate} → {job.endDate}
-                    </p>
-                  </div>
-                </div>
-                <ul className="space-y-2">
-                  {job.highlights.map((highlight, idx) => (
-                    <li key={idx} className="text-gray-300 text-xs sm:text-sm flex items-start">
-                      <span className="text-purple-400 mr-2 font-mono flex-shrink-0">•</span>
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <TimelineSection
+            items={resume.workExperience.map<TimelineItem>((job) => ({
+              subject: `${job.position} @ ${job.company}`,
+              context: `${job.location} · ${job.contract_type}`,
+              startDate: job.startDate,
+              endDate: job.endDate,
+              highlights: job.highlights,
+            }))}
+            defaultExpanded={3}
+            accentColor="text-blue-400"
+          />
         </CollapsibleSection>
 
         {/* Skills Section */}
@@ -390,25 +376,16 @@ export default function Home() {
           iconColor="text-cyan-400"
           borderColor="border-cyan-500/50"
         >
-          <div className="space-y-4 md:space-y-6">
-            {resume.education.map((edu, index) => (
-              <div key={index} className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-4 md:p-6 hover:border-cyan-500/50 transition-colors">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start space-y-2 md:space-y-0">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-semibold text-cyan-400 font-mono">{edu.degree}</h3>
-                    <p className="text-gray-300 font-mono text-sm">{edu.institution}</p>
-                    <p className="text-gray-400 font-mono text-xs">{edu.location}</p>
-                  </div>
-                  <div className="md:text-right">
-                    <p className="text-green-400 font-mono text-sm">
-                      {edu.startDate} → {edu.endDate}
-                    </p>
-                    {edu.gpa && <p className="text-gray-400 font-mono text-xs">GPA: {edu.gpa}</p>}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TimelineSection
+            items={resume.education.map<TimelineItem>((edu) => ({
+              subject: `${edu.degree} @ ${edu.institution}`,
+              context: edu.location,
+              startDate: edu.startDate,
+              endDate: edu.endDate,
+            }))}
+            defaultExpanded={2}
+            accentColor="text-cyan-400"
+          />
         </CollapsibleSection>
 
         {/* Certifications Section */}
