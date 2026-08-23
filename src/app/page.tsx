@@ -6,6 +6,27 @@ import TimelineSection, { TimelineItem } from '@/components/TimelineSection';
 import { useEffect, useMemo, useState } from 'react';
 import { jsPDF } from 'jspdf';
 
+// jsPDF's built-in Helvetica is WinAnsi-only and cannot encode Romanian
+// diacritics (ă â î ș ț — ș/ț are outside Latin-1 entirely). Embed a Unicode
+// TTF instead. Geist is SIL OFL; the file is served from /public/fonts.
+const PDF_FONT_NAME = 'Geist';
+const PDF_FONT_FILE = 'Geist-Regular.ttf';
+let pdfFontBase64: string | null = null;
+
+async function loadPdfFont(): Promise<string> {
+  if (pdfFontBase64) return pdfFontBase64;
+  const res = await fetch(`/fonts/${PDF_FONT_FILE}`);
+  if (!res.ok) throw new Error(`Font fetch failed: ${res.status}`);
+  const bytes = new Uint8Array(await res.arrayBuffer());
+  let binary = '';
+  const chunk = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+  }
+  pdfFontBase64 = btoa(binary);
+  return pdfFontBase64;
+}
+
 export default function Home() {
   const [locale, setLocale] = useState<Locale>('en');
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
@@ -35,8 +56,14 @@ export default function Home() {
     setIsMobileNavOpen(false);
   };
 
-  const generatePDF = () => {
+  const generatePDF = async () => {
     const doc = new jsPDF();
+    const fontBase64 = await loadPdfFont();
+    doc.addFileToVFS(PDF_FONT_FILE, fontBase64);
+    // Only the Regular weight ships with Next; register it for both styles so
+    // the existing bold/normal calls below keep working. Hierarchy is by size.
+    doc.addFont(PDF_FONT_FILE, PDF_FONT_NAME, 'normal');
+    doc.addFont(PDF_FONT_FILE, PDF_FONT_NAME, 'bold');
     let yPosition = 20;
     const pageWidth = doc.internal.pageSize.width;
     const margin = 20;
@@ -52,12 +79,12 @@ export default function Home() {
 
     // Header
     doc.setFontSize(24);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(PDF_FONT_NAME,'bold');
     doc.text(resume.personalInfo.name, margin, yPosition);
     yPosition += 10;
 
     doc.setFontSize(16);
-    doc.setFont('helvetica', 'normal');
+    doc.setFont(PDF_FONT_NAME,'normal');
     doc.text(resume.personalInfo.title, margin, yPosition);
     yPosition += 8;
 
@@ -68,17 +95,17 @@ export default function Home() {
 
     // Summary
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(PDF_FONT_NAME,'bold');
     doc.text('SUMMARY', margin, yPosition);
     yPosition += 8;
 
-    doc.setFont('helvetica', 'normal');
+    doc.setFont(PDF_FONT_NAME,'normal');
     yPosition = addWrappedText(resume.personalInfo.summary, margin, yPosition, contentWidth, 10);
     yPosition += 10;
 
     // Work Experience
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(PDF_FONT_NAME,'bold');
     doc.text('WORK EXPERIENCE', margin, yPosition);
     yPosition += 8;
 
@@ -90,12 +117,12 @@ export default function Home() {
       }
 
       doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
+      doc.setFont(PDF_FONT_NAME,'bold');
       doc.text(job.position, margin, yPosition);
       yPosition += 6;
 
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
+      doc.setFont(PDF_FONT_NAME,'normal');
       doc.text(`${job.company} | ${job.contract_type} | ${job.location} | ${job.startDate} - ${job.endDate}`, margin, yPosition);
       yPosition += 8;
 
@@ -123,7 +150,7 @@ export default function Home() {
     }
 
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(PDF_FONT_NAME,'bold');
     doc.text('EDUCATION', margin, yPosition);
     yPosition += 8;
 
@@ -134,12 +161,12 @@ export default function Home() {
       }
 
       doc.setFontSize(11);
-      doc.setFont('helvetica', 'bold');
+      doc.setFont(PDF_FONT_NAME,'bold');
       doc.text(edu.degree, margin, yPosition);
       yPosition += 6;
 
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
+      doc.setFont(PDF_FONT_NAME,'normal');
       doc.text(`${edu.institution} | ${edu.location} | ${edu.startDate} - ${edu.endDate}`, margin, yPosition);
       yPosition += 10;
     });
@@ -152,7 +179,7 @@ export default function Home() {
       }
 
       doc.setFontSize(14);
-      doc.setFont('helvetica', 'bold');
+      doc.setFont(PDF_FONT_NAME,'bold');
       doc.text('CERTIFICATIONS', margin, yPosition);
       yPosition += 8;
 
@@ -163,12 +190,12 @@ export default function Home() {
         }
 
         doc.setFontSize(11);
-        doc.setFont('helvetica', 'bold');
+        doc.setFont(PDF_FONT_NAME,'bold');
         doc.text(cert.name, margin, yPosition);
         yPosition += 6;
 
         doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
+        doc.setFont(PDF_FONT_NAME,'normal');
         doc.text(`${cert.issuer} | ${cert.date}`, margin, yPosition);
         yPosition += 8;
       });
@@ -181,13 +208,13 @@ export default function Home() {
     }
 
     doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
+    doc.setFont(PDF_FONT_NAME,'bold');
     doc.text('LANGUAGES', margin, yPosition);
     yPosition += 8;
 
     resume.languages.forEach((lang) => {
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
+      doc.setFont(PDF_FONT_NAME,'normal');
       doc.text(`${lang.language}: ${lang.proficiency}`, margin, yPosition);
       yPosition += 6;
     });
