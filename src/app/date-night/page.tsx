@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+
+type Mood = "happy" | "hungry" | "excited" | "tipsy" | "sweet" | "groovy" | "wish" | "love";
 
 type Question = {
   id: string;
@@ -8,222 +10,271 @@ type Question = {
   subtitle?: string;
   multi?: boolean;
   mood: Mood;
-  options: { emoji: string; label: string }[];
+  options: string[];
 };
-
-type Mood = "happy" | "hungry" | "excited" | "tipsy" | "sweet" | "groovy" | "love";
 
 const QUESTIONS: Question[] = [
   {
     id: "vibe",
-    title: "What's the vibe tonight?",
-    subtitle: "Saturday. The house is ours ✨",
+    title: "the vibe tonight?",
+    subtitle: "saturday. the house is ours.",
     mood: "happy",
     options: [
-      { emoji: "🕯️", label: "Cozy & snuggly" },
-      { emoji: "👗", label: "Fancy — we dress up" },
-      { emoji: "😜", label: "Silly & playful" },
-      { emoji: "🎬", label: "Home cinema, pajamas on" },
+      "cozy & snuggly",
+      "fancy — we dress up",
+      "silly & playful",
+      "home cinema, pajamas on",
     ],
   },
   {
     id: "food",
-    title: "What are we nomming?",
+    title: "what are we eating?",
     mood: "hungry",
     options: [
-      { emoji: "🍳", label: "We cook together" },
-      { emoji: "🧀", label: "A yummy snack board" },
-      { emoji: "🍕", label: "Order whatever we crave" },
-      { emoji: "🍣", label: "Sushiii!" },
+      "we cook together",
+      "a big snack board",
+      "order whatever we crave",
+      "sushi, obviously",
     ],
   },
   {
     id: "activity",
-    title: "And after dinner?",
-    subtitle: "Pick as many as you like 💕",
+    title: "after dinner, we…",
+    subtitle: "pick as many as you like",
     multi: true,
     mood: "excited",
     options: [
-      { emoji: "🎲", label: "Games!" },
-      { emoji: "🎬", label: "A movie" },
-      { emoji: "💃", label: "Living-room dancing" },
-      { emoji: "🧖‍♀️", label: "Home spa" },
-      { emoji: "🎨", label: "Something crafty" },
-      { emoji: "🌙", label: "Couch talks till late" },
+      "play games",
+      "watch a movie",
+      "dance in the living room",
+      "home spa",
+      "make something crafty",
+      "talk on the couch till late",
     ],
   },
   {
     id: "drinks",
-    title: "What's in our glasses?",
+    title: "in our glasses…",
     mood: "tipsy",
     options: [
-      { emoji: "🍷", label: "Wine" },
-      { emoji: "🍹", label: "Cocktails by the house barman" },
-      { emoji: "🫖", label: "Tea / hot cocoa" },
-      { emoji: "🧋", label: "Something cute, no alcohol" },
+      "wine",
+      "cocktails by the house barman",
+      "tea or hot cocoa",
+      "something cute, no alcohol",
     ],
   },
   {
     id: "dessert",
-    title: "Dessert time…?",
+    title: "and for dessert?",
     mood: "sweet",
-    options: [
-      { emoji: "🍫", label: "Chocolate!" },
-      { emoji: "🧁", label: "We bake something" },
-      { emoji: "🍦", label: "Ice cream" },
-      { emoji: "😏", label: "Surprise me" },
-    ],
+    options: ["chocolate", "we bake something", "ice cream", "surprise me"],
   },
   {
     id: "music",
-    title: "Soundtrack of the night?",
+    title: "the soundtrack?",
     mood: "groovy",
-    options: [
-      { emoji: "🌊", label: "Chill & dreamy" },
-      { emoji: "📼", label: "Our songs" },
-      { emoji: "💃", label: "Latino heat" },
-      { emoji: "🎷", label: "Smooth jazz" },
-    ],
+    options: ["chill & dreamy", "our songs", "latino", "smooth jazz"],
   },
 ];
 
-const TOTAL_STEPS = QUESTIONS.length + 1; // + free-text wish
+const TOTAL_STEPS = QUESTIONS.length + 1;
 
-/* ---------- chibi mascot ---------- */
+/* ---------------- palette ----------------
+   paper  #FFF9F2   ink  #4A3B36
+   rose   #F27998   rose-dark #D95D80
+   rose-soft #FFE4EC   butter #FFE9C7
+------------------------------------------- */
 
-function Chibi({ mood }: { mood: Mood }) {
+const INK = "#4A3B36";
+const ROSE = "#F27998";
+const ROSE_SOFT = "#FFE4EC";
+
+/* ---------------- the kitty ---------------- */
+
+function Kitty({ mood }: { mood: Mood }) {
+  const S = 3; // outline weight, constant everywhere
+
   const eyes = (() => {
     switch (mood) {
       case "love":
         return (
           <>
-            <text x="38" y="47" fontSize="13" textAnchor="middle">💗</text>
-            <text x="66" y="47" fontSize="13" textAnchor="middle">💗</text>
+            <path d="M40 44 c-3 -4 -9 -2 -9 3 c0 4 5 7 9 10 c4 -3 9 -6 9 -10 c0 -5 -6 -7 -9 -3 Z" fill={ROSE} />
+            <path d="M80 44 c-3 -4 -9 -2 -9 3 c0 4 5 7 9 10 c4 -3 9 -6 9 -10 c0 -5 -6 -7 -9 -3 Z" fill={ROSE} />
           </>
         );
       case "excited":
         return (
           <>
-            <text x="38" y="47" fontSize="12" textAnchor="middle">✨</text>
-            <text x="66" y="47" fontSize="12" textAnchor="middle">✨</text>
+            <path d="M40 40 l2.4 5.6 5.6 2.4 -5.6 2.4 -2.4 5.6 -2.4 -5.6 -5.6 -2.4 5.6 -2.4 Z" fill={INK} />
+            <path d="M80 40 l2.4 5.6 5.6 2.4 -5.6 2.4 -2.4 5.6 -2.4 -5.6 -5.6 -2.4 5.6 -2.4 Z" fill={INK} />
           </>
         );
       case "sweet":
         return (
           <>
-            <path d="M33 42 q5 -6 10 0" stroke="#5a3d3d" strokeWidth="2.4" fill="none" strokeLinecap="round" />
-            <path d="M61 42 q5 -6 10 0" stroke="#5a3d3d" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+            <path d="M33 48 q7 -8 14 0" stroke={INK} strokeWidth={S} fill="none" strokeLinecap="round" />
+            <path d="M73 48 q7 -8 14 0" stroke={INK} strokeWidth={S} fill="none" strokeLinecap="round" />
+          </>
+        );
+      case "tipsy":
+        return (
+          <>
+            <g className="k-blink">
+              <ellipse cx="40" cy="47" rx="5" ry="6" fill={INK} />
+              <circle cx="42" cy="45" r="1.8" fill="#fff" />
+            </g>
+            <g className="k-blink">
+              <ellipse cx="80" cy="47" rx="5" ry="6" fill={INK} />
+              <circle cx="82" cy="45" r="1.8" fill="#fff" />
+            </g>
+            <path d="M28 36 q6 -4 12 -2" stroke={INK} strokeWidth={S * 0.8} fill="none" strokeLinecap="round" />
+            <path d="M92 36 q-6 -4 -12 -2" stroke={INK} strokeWidth={S * 0.8} fill="none" strokeLinecap="round" />
           </>
         );
       default:
         return (
           <>
-            <circle cx="38" cy="43" r="4.2" fill="#5a3d3d" />
-            <circle cx="66" cy="43" r="4.2" fill="#5a3d3d" />
-            <circle cx="39.5" cy="41.5" r="1.4" fill="#fff" />
-            <circle cx="67.5" cy="41.5" r="1.4" fill="#fff" />
+            <g className="k-blink">
+              <ellipse cx="40" cy="47" rx="5" ry="6" fill={INK} />
+              <circle cx="42" cy="45" r="1.8" fill="#fff" />
+            </g>
+            <g className="k-blink">
+              <ellipse cx="80" cy="47" rx="5" ry="6" fill={INK} />
+              <circle cx="82" cy="45" r="1.8" fill="#fff" />
+            </g>
           </>
         );
     }
   })();
 
-  const mouth = (() => {
-    switch (mood) {
-      case "hungry":
-        return <ellipse cx="52" cy="56" rx="5" ry="6" fill="#5a3d3d" />;
-      case "tipsy":
-        return <path d="M46 56 q6 5 12 0" stroke="#5a3d3d" strokeWidth="2.4" fill="none" strokeLinecap="round" />;
-      case "love":
-      case "excited":
-        return <path d="M44 54 q8 8 16 0" stroke="#5a3d3d" strokeWidth="2.4" fill="none" strokeLinecap="round" />;
-      default:
-        return <path d="M47 55 q5 4 10 0" stroke="#5a3d3d" strokeWidth="2.4" fill="none" strokeLinecap="round" />;
-    }
-  })();
-
   return (
-    <svg viewBox="0 0 104 96" className="w-32 h-28 chibi-bob" aria-hidden>
+    <svg viewBox="0 0 120 112" className="k-bob w-36 h-32" aria-hidden>
+      {/* tail */}
+      <path
+        d="M96 92 q18 2 16 -14 q-1 -9 -9 -10"
+        fill="none"
+        stroke={INK}
+        strokeWidth={S}
+        strokeLinecap="round"
+        className="k-tail"
+      />
       {/* ears */}
-      <path d="M22 26 L14 6 L38 16 Z" fill="#ffd9e8" stroke="#f5a8c6" strokeWidth="2.5" strokeLinejoin="round" />
-      <path d="M82 26 L90 6 L66 16 Z" fill="#ffd9e8" stroke="#f5a8c6" strokeWidth="2.5" strokeLinejoin="round" />
-      <path d="M24 22 L19 11 L33 17 Z" fill="#ff9ec4" />
-      <path d="M80 22 L85 11 L71 17 Z" fill="#ff9ec4" />
+      <path d="M26 34 Q22 10 38 16 L48 24 Z" fill="#fff" stroke={INK} strokeWidth={S} strokeLinejoin="round" />
+      <path d="M94 34 Q98 10 82 16 L72 24 Z" fill="#fff" stroke={INK} strokeWidth={S} strokeLinejoin="round" />
+      <path d="M30 30 Q28 18 37 21 L42 25 Z" fill={ROSE_SOFT} />
+      <path d="M90 30 Q92 18 83 21 L78 25 Z" fill={ROSE_SOFT} />
       {/* head */}
-      <ellipse cx="52" cy="50" rx="40" ry="36" fill="#ffd9e8" stroke="#f5a8c6" strokeWidth="2.5" />
-      {/* blush */}
-      <ellipse cx="26" cy="52" rx="6.5" ry="4" fill="#ffb0cd" opacity="0.85" />
-      <ellipse cx="78" cy="52" rx="6.5" ry="4" fill="#ffb0cd" opacity="0.85" />
+      <ellipse cx="60" cy="54" rx="42" ry="36" fill="#fff" stroke={INK} strokeWidth={S} />
+      {/* cheeks */}
+      <ellipse cx="30" cy="60" rx="7" ry="4.5" fill={ROSE_SOFT} />
+      <ellipse cx="90" cy="60" rx="7" ry="4.5" fill={ROSE_SOFT} />
       {eyes}
-      {mouth}
+      {/* nose + mouth */}
+      <path d="M57 57 h6 l-3 4 Z" fill={ROSE} />
+      <path d="M60 61 v3 M60 64 q-4 4 -8 1 M60 64 q4 4 8 1" stroke={INK} strokeWidth={S * 0.8} fill="none" strokeLinecap="round" />
       {/* whiskers */}
-      <path d="M8 46 h10 M8 54 h10 M86 46 h10 M86 54 h10" stroke="#f5a8c6" strokeWidth="2" strokeLinecap="round" />
-      {/* paws */}
-      <ellipse cx="34" cy="86" rx="10" ry="7" fill="#ffd9e8" stroke="#f5a8c6" strokeWidth="2.5" />
-      <ellipse cx="70" cy="86" rx="10" ry="7" fill="#ffd9e8" stroke="#f5a8c6" strokeWidth="2.5" />
+      <path d="M12 52 h9 M13 60 h8 M99 52 h9 M99 60 h8" stroke={INK} strokeWidth={S * 0.7} strokeLinecap="round" />
+      {/* body + paws */}
+      <path d="M38 88 q0 16 22 16 q22 0 22 -16" fill="#fff" stroke={INK} strokeWidth={S} />
+      <ellipse cx="48" cy="102" rx="8" ry="5" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+      <ellipse cx="72" cy="102" rx="8" ry="5" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+
+      {/* ------- costume props per mood ------- */}
+      {mood === "hungry" && (
+        <g transform="rotate(-8 60 18)">
+          {/* chef toque: three puffs + band */}
+          <circle cx="45" cy="15" r="10" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+          <circle cx="75" cy="15" r="10" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+          <circle cx="60" cy="9" r="12" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+          <rect x="42" y="19" width="36" height="13" rx="5" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+        </g>
+      )}
+      {mood === "groovy" && (
+        <g>
+          <path d="M22 44 q-2 -34 38 -34 q40 0 38 34" fill="none" stroke={INK} strokeWidth={S} strokeLinecap="round" />
+          <rect x="14" y="40" width="12" height="18" rx="6" fill={ROSE} stroke={INK} strokeWidth={S * 0.9} />
+          <rect x="94" y="40" width="12" height="18" rx="6" fill={ROSE} stroke={INK} strokeWidth={S * 0.9} />
+        </g>
+      )}
+      {mood === "tipsy" && (
+        <g>
+          {/* tiny wine glass in paw */}
+          <path d="M96 78 q10 8 2 16 l-6 6" fill="none" stroke={INK} strokeWidth={S * 0.8} strokeLinecap="round" />
+          <path d="M104 68 q0 10 -8 10 q-8 0 -8 -10 Z" fill={ROSE_SOFT} stroke={INK} strokeWidth={S * 0.8} strokeLinejoin="round" />
+          <path d="M96 78 v8 M90 88 h12" stroke={INK} strokeWidth={S * 0.8} strokeLinecap="round" />
+        </g>
+      )}
+      {mood === "sweet" && (
+        /* little tongue */
+        <path d="M56 66 q4 6 8 0 q0 6 -4 6 q-4 0 -4 -6 Z" fill={ROSE} stroke={INK} strokeWidth={S * 0.6} />
+      )}
+      {mood === "wish" && (
+        <g>
+          {/* pencil in paw */}
+          <path d="M92 76 l16 -14 4 5 -16 14 -6 1 Z" fill="#FFE9C7" stroke={INK} strokeWidth={S * 0.8} strokeLinejoin="round" />
+          <path d="M108 62 l4 5" stroke={INK} strokeWidth={S * 0.8} />
+        </g>
+      )}
+      {mood === "love" && (
+        <g className="k-float-heart">
+          <path d="M104 26 c-2.5 -3.5 -8 -2 -8 2.5 c0 3.5 4.5 6 8 8.5 c3.5 -2.5 8 -5 8 -8.5 c0 -4.5 -5.5 -6 -8 -2.5 Z" fill={ROSE} stroke={INK} strokeWidth={S * 0.6} />
+        </g>
+      )}
+      {(mood === "happy" || mood === "excited") && (
+        /* bow on the ear */
+        <g>
+          <path d="M84 12 q6 -6 8 0 q6 -2 4 4 q6 2 0 6 q0 6 -6 3 q-4 4 -6 -2 q-6 1 -4 -5 q-4 -4 4 -6 Z" fill={ROSE} stroke={INK} strokeWidth={S * 0.7} strokeLinejoin="round" />
+          <circle cx="88" cy="17" r="2" fill="#fff" />
+        </g>
+      )}
     </svg>
   );
 }
 
-/* ---------- floating background bits ---------- */
+/* ---------------- small drawn bits ---------------- */
 
-const FLOATIES = ["💖", "🌸", "✨", "💕", "🎀", "⭐", "💗", "🌷", "✨", "💘", "🌸", "💝"];
-
-function Floaties() {
+function Heart({ filled, className = "" }: { filled: boolean; className?: string }) {
   return (
-    <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-      {FLOATIES.map((f, i) => (
-        <span
-          key={i}
-          className="floaty absolute text-2xl opacity-40"
-          style={{
-            left: `${(i * 83) % 100}%`,
-            animationDelay: `${(i * 1.7) % 12}s`,
-            animationDuration: `${9 + (i % 5) * 2}s`,
-            fontSize: `${16 + (i % 3) * 8}px`,
-          }}
-        >
-          {f}
-        </span>
-      ))}
-    </div>
+    <svg viewBox="0 0 24 22" className={`w-4 h-4 ${className}`} aria-hidden>
+      <path
+        d="M12 6 C9 1 2 2.5 2 8 c0 5 6 8.5 10 12 c4 -3.5 10 -7 10 -12 c0 -5.5 -7 -7 -10 -2 Z"
+        fill={filled ? ROSE : "none"}
+        stroke={filled ? ROSE : "#E8C8D2"}
+        strokeWidth="2.4"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
-/* ---------- confetti burst on the final screen ---------- */
-
-function Confetti() {
+function Sparkle({ className = "", style }: { className?: string; style?: React.CSSProperties }) {
   return (
-    <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-      {Array.from({ length: 24 }).map((_, i) => (
-        <span
-          key={i}
-          className="confetto absolute text-xl"
-          style={{
-            left: `${(i * 41) % 100}%`,
-            animationDelay: `${(i % 8) * 0.15}s`,
-          }}
-        >
-          {["💖", "🎉", "✨", "🌸", "💛", "🎀"][i % 6]}
-        </span>
-      ))}
-    </div>
+    <svg viewBox="0 0 24 24" className={`absolute w-5 h-5 twinkle ${className}`} style={style} aria-hidden>
+      <path d="M12 2 l2.2 7.8 L22 12 l-7.8 2.2 L12 22 l-2.2 -7.8 L2 12 l7.8 -2.2 Z" fill="#F2B8C9" />
+    </svg>
   );
 }
 
-/* ---------- page ---------- */
+function Check() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden>
+      <path d="M4 13 l5 5 L20 6" fill="none" stroke={ROSE} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/* ---------------- page ---------------- */
 
 export default function DateNight() {
   const [step, setStep] = useState(-1);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [wish, setWish] = useState("");
   const [copied, setCopied] = useState(false);
-  const [popKey, setPopKey] = useState(0);
 
   const done = step >= TOTAL_STEPS;
   const question = step >= 0 && step < QUESTIONS.length ? QUESTIONS[step] : null;
-  const mood: Mood = done ? "love" : question ? question.mood : step === QUESTIONS.length ? "love" : "happy";
-
-  useEffect(() => setPopKey((k) => k + 1), [step]);
+  const mood: Mood = done ? "love" : question ? question.mood : step === QUESTIONS.length ? "wish" : "happy";
 
   const toggle = (q: Question, label: string) => {
     setAnswers((prev) => {
@@ -238,20 +289,13 @@ export default function DateNight() {
       }
       return { ...prev, [q.id]: [label] };
     });
-    if (!q.multi) setTimeout(() => setStep((s) => s + 1), 280);
+    if (!q.multi) setTimeout(() => setStep((s) => s + 1), 300);
   };
 
   const summary = useMemo(() => {
-    const lines = QUESTIONS.map((q) => {
-      const picked = answers[q.id] ?? [];
-      const withEmoji = picked.map((label) => {
-        const opt = q.options.find((o) => o.label === label);
-        return opt ? `${opt.emoji} ${opt.label}` : label;
-      });
-      return `${q.title} ${withEmoji.join(", ") || "—"}`;
-    });
-    if (wish.trim()) lines.push(`My little wish: ${wish.trim()}`);
-    return `💖 Date night — my answers:\n\n${lines.join("\n")}`;
+    const lines = QUESTIONS.map((q) => `${q.title} ${(answers[q.id] ?? []).join(", ") || "—"}`);
+    if (wish.trim()) lines.push(`my little wish: ${wish.trim()}`);
+    return `date night — my answers ♡\n\n${lines.join("\n")}`;
   }, [answers, wish]);
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(summary)}`;
@@ -267,84 +311,77 @@ export default function DateNight() {
   };
 
   return (
-    <main className="dn min-h-dvh flex flex-col items-center justify-center px-5 py-10 relative">
+    <main className="dn min-h-dvh flex flex-col items-center justify-center px-5 py-10 relative overflow-hidden">
       <style>{css}</style>
-      <Floaties />
-      {done && <Confetti />}
+
+      {/* a few deliberate sparkles, not a rain */}
+      <Sparkle style={{ top: "12%", left: "12%", animationDelay: "0s" }} />
+      <Sparkle style={{ top: "22%", right: "10%", animationDelay: "1.1s" }} className="w-3.5 h-3.5" />
+      <Sparkle style={{ bottom: "18%", left: "8%", animationDelay: "2s" }} className="w-3.5 h-3.5" />
+      <Sparkle style={{ bottom: "10%", right: "14%", animationDelay: "0.6s" }} />
 
       <div className="w-full max-w-md relative">
-        {/* progress hearts */}
         {step >= 0 && !done && (
-          <div className="flex justify-center gap-1.5 mb-5" aria-hidden>
+          <div className="flex justify-center gap-1.5 mb-5">
             {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-              <span
-                key={i}
-                className={`text-lg transition-all duration-300 ${
-                  i <= step ? "scale-110" : "grayscale opacity-30 scale-90"
-                }`}
-              >
-                💖
-              </span>
+              <Heart key={i} filled={i <= step} />
             ))}
           </div>
         )}
 
-        <div className="flex justify-center mb-2">
-          <Chibi mood={mood} />
+        <div className="flex justify-center -mb-3 relative z-10">
+          <Kitty mood={mood} />
         </div>
 
-        <div key={popKey} className="card-pop">
+        <div key={step} className="card-in">
           {step === -1 && (
-            <div className="bubble text-center space-y-5">
-              <h1 className="text-4xl font-bold text-[#e0568c]">
-                Hiii cutie! 💌
-              </h1>
-              <p className="text-lg text-[#8a6a75] leading-relaxed">
-                Saturday night is ours and I&apos;m planning something for us.
-                But first, this little kitty has a few questions for you.
-                Pinky promise it takes one minute!
+            <div className="paper text-center space-y-5">
+              <h1 className="text-3xl font-semibold ink">hi, you.</h1>
+              <p className="text-[17px] leading-relaxed ink-soft">
+                Saturday night is booked — by me, for us.
+                <br />
+                This little cat has a few questions first.
+                <br />
+                One minute, pinky promise.
               </p>
-              <button onClick={() => setStep(0)} className="btn-main wiggle">
-                Let&apos;s play! 🎀
+              <button onClick={() => setStep(0)} className="btn-main">
+                let&apos;s begin
               </button>
             </div>
           )}
 
           {question && (
-            <div className="bubble space-y-5">
+            <div className="paper space-y-5">
               <div className="text-center">
-                <h2 className="text-2xl font-bold text-[#e0568c]">{question.title}</h2>
-                {question.subtitle && (
-                  <p className="text-[#b08a99] mt-1">{question.subtitle}</p>
-                )}
+                <h2 className="text-2xl font-semibold ink">{question.title}</h2>
+                {question.subtitle && <p className="ink-faint mt-1 text-[15px]">{question.subtitle}</p>}
               </div>
-              <div className="grid grid-cols-1 gap-3">
-                {question.options.map((opt) => {
-                  const selected = (answers[question.id] ?? []).includes(opt.label);
+              <div className="grid grid-cols-1 gap-2.5">
+                {question.options.map((label) => {
+                  const selected = (answers[question.id] ?? []).includes(label);
                   return (
-                    <button
-                      key={opt.label}
-                      onClick={() => toggle(question, opt.label)}
-                      className={`opt ${selected ? "opt-on" : ""}`}
-                    >
-                      <span className="text-2xl">{opt.emoji}</span>
-                      <span>{opt.label}</span>
-                      {selected && <span className="ml-auto">💖</span>}
+                    <button key={label} onClick={() => toggle(question, label)} className={`opt ${selected ? "opt-on" : ""}`}>
+                      <span>{label}</span>
+                      {selected && (
+                        <span className="ml-auto check-in">
+                          <Check />
+                        </span>
+                      )}
                     </button>
                   );
                 })}
               </div>
               <div className="flex justify-between items-center pt-1">
                 <button onClick={() => setStep((s) => s - 1)} className="btn-ghost">
-                  ← back
+                  back
                 </button>
                 {question.multi && (
                   <button
                     onClick={() => setStep((s) => s + 1)}
                     disabled={(answers[question.id] ?? []).length === 0}
-                    className="btn-main"
+                    className="btn-main btn-sm"
                   >
-                    Done! →
+                    done
                   </button>
                 )}
               </div>
@@ -352,54 +389,44 @@ export default function DateNight() {
           )}
 
           {step === QUESTIONS.length && !done && (
-            <div className="bubble space-y-5">
+            <div className="paper space-y-5">
               <div className="text-center">
-                <h2 className="text-2xl font-bold text-[#e0568c]">
-                  Last one: any special little wish?
-                </h2>
-                <p className="text-[#b08a99] mt-1">Anything. Really anything 💭</p>
+                <h2 className="text-2xl font-semibold ink">one last thing — a tiny wish?</h2>
+                <p className="ink-faint mt-1 text-[15px]">anything at all</p>
               </div>
               <textarea
                 value={wish}
                 onChange={(e) => setWish(e.target.value)}
                 rows={4}
-                placeholder="Type here… or leave it empty and I'll improvise ✨"
-                className="w-full rounded-3xl border-[3px] border-[#ffd0e2] bg-white px-5 py-4 text-lg text-[#7a5a66] outline-none focus:border-[#ff9ec4] resize-none placeholder:text-[#d4b3c0]"
+                placeholder="write it here… or leave it blank and I'll improvise"
+                className="wish-box"
               />
               <div className="flex justify-between items-center">
                 <button onClick={() => setStep((s) => s - 1)} className="btn-ghost">
-                  ← back
+                  back
                 </button>
-                <button onClick={() => setStep((s) => s + 1)} className="btn-main">
-                  All done! 💖
+                <button onClick={() => setStep((s) => s + 1)} className="btn-main btn-sm">
+                  all done
                 </button>
               </div>
             </div>
           )}
 
           {done && (
-            <div className="bubble text-center space-y-5">
-              <h2 className="text-3xl font-bold text-[#e0568c]">
-                Yaaay, thank you! 🥰
-              </h2>
-              <p className="text-lg text-[#8a6a75]">
-                Now send me your answers and I&apos;ll take care of everything
-                else. See you Saturday 😘
+            <div className="paper text-center space-y-5">
+              <h2 className="text-3xl font-semibold ink">thank you, love.</h2>
+              <p className="text-[17px] ink-soft">
+                Send this over and I&apos;ll take care of the rest.
+                <br />
+                See you Saturday.
               </p>
-              <div className="rounded-3xl border-[3px] border-[#ffd0e2] bg-[#fff6fa] p-5 text-left text-sm whitespace-pre-wrap text-[#8a6a75]">
-                {summary}
-              </div>
+              <div className="letter text-left text-[14px] whitespace-pre-wrap">{summary}</div>
               <div className="flex flex-col gap-3 items-center">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-main wiggle"
-                >
-                  Send on WhatsApp 💌
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-main">
+                  send it to me
                 </a>
                 <button onClick={copy} className="btn-ghost">
-                  {copied ? "Copied! ✓" : "…or copy the text"}
+                  {copied ? "copied ✓" : "or copy the text"}
                 </button>
               </div>
             </div>
@@ -412,63 +439,98 @@ export default function DateNight() {
 
 const css = `
 .dn {
-  background: linear-gradient(160deg, #ffe3ef 0%, #fff2e3 45%, #efe6ff 100%);
+  background-color: #FFF9F2;
+  background-image: radial-gradient(#F5DDE5 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
 }
-.bubble {
-  background: rgba(255, 255, 255, 0.88);
-  border: 3px solid #ffd0e2;
-  border-radius: 2rem;
-  padding: 1.75rem 1.5rem;
-  box-shadow: 0 10px 30px rgba(224, 86, 140, 0.15), 0 3px 0 #ffd0e2;
-  backdrop-filter: blur(4px);
+.ink { color: ${INK}; }
+.ink-soft { color: #7A6660; }
+.ink-faint { color: #B39A94; }
+
+.paper {
+  background: #fff;
+  border: 3px solid ${INK};
+  border-radius: 1.5rem;
+  padding: 2rem 1.6rem 1.75rem;
+  box-shadow: 6px 6px 0 #F2B8C9;
 }
+
 .btn-main {
   display: inline-block;
-  background: linear-gradient(180deg, #ff9ec4, #ff7bac);
+  background: ${ROSE};
   color: #fff;
-  font-weight: 700;
-  font-size: 1.15rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 3px solid ${INK};
   border-radius: 9999px;
-  padding: 0.8rem 2.2rem;
-  box-shadow: 0 4px 0 #e0568c;
-  transition: transform 0.15s, box-shadow 0.15s;
+  padding: 0.65rem 2rem;
+  box-shadow: 3px 3px 0 ${INK};
+  transition: transform 0.12s, box-shadow 0.12s;
 }
-.btn-main:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #e0568c; }
-.btn-main:active { transform: translateY(2px); box-shadow: 0 2px 0 #e0568c; }
-.btn-main:disabled { opacity: 0.4; box-shadow: 0 4px 0 #e0568c; transform: none; }
-.btn-ghost { color: #c290a3; font-weight: 600; transition: color 0.15s; }
-.btn-ghost:hover { color: #e0568c; }
+.btn-main:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 ${INK}; }
+.btn-main:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 ${INK}; }
+.btn-main:disabled { opacity: 0.35; transform: none; box-shadow: 3px 3px 0 ${INK}; }
+.btn-sm { font-size: 0.95rem; padding: 0.5rem 1.5rem; }
+.btn-ghost { color: #B39A94; font-weight: 600; font-size: 0.95rem; transition: color 0.15s; }
+.btn-ghost:hover { color: ${ROSE}; }
+
 .opt {
-  display: flex; align-items: center; gap: 1rem; text-align: left;
-  font-size: 1.1rem; font-weight: 600; color: #7a5a66;
-  background: #fff; border: 3px solid #ffd0e2; border-radius: 1.5rem;
-  padding: 0.9rem 1.25rem;
-  box-shadow: 0 3px 0 #ffd0e2;
-  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  display: flex; align-items: center; gap: 0.75rem; text-align: left;
+  font-size: 1.05rem; font-weight: 500; color: ${INK};
+  background: #fff;
+  border: 2.5px solid #EBD5DC;
+  border-radius: 1rem;
+  padding: 0.8rem 1.1rem;
+  transition: border-color 0.12s, transform 0.12s, background 0.12s, box-shadow 0.12s;
 }
-.opt:hover { transform: translateY(-2px) rotate(-0.5deg); border-color: #ff9ec4; box-shadow: 0 5px 0 #ffc3da; }
-.opt:active { transform: scale(0.97); }
+.opt:hover { border-color: ${ROSE}; transform: translateY(-1px); box-shadow: 0 3px 0 #F5DDE5; }
+.opt:active { transform: scale(0.98); }
 .opt-on {
-  border-color: #ff7bac; background: #fff0f6;
-  box-shadow: 0 3px 0 #ff9ec4;
-  animation: pop 0.25s ease;
+  border-color: ${INK};
+  background: ${ROSE_SOFT};
+  box-shadow: 3px 3px 0 #F2B8C9;
 }
-@keyframes pop { 50% { transform: scale(1.04); } }
-.card-pop { animation: cardIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
-@keyframes cardIn { from { opacity: 0; transform: translateY(14px) scale(0.96); } }
-.chibi-bob { animation: bob 2.6s ease-in-out infinite; }
-@keyframes bob { 50% { transform: translateY(-7px) rotate(2deg); } }
-.wiggle { animation: wiggle 2.2s ease-in-out infinite; }
-@keyframes wiggle { 0%, 100% { rotate: -2deg; } 50% { rotate: 2deg; } }
-.floaty { bottom: -3rem; animation-name: floatUp; animation-timing-function: linear; animation-iteration-count: infinite; }
-@keyframes floatUp {
-  from { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.45; }
-  90% { opacity: 0.3; }
-  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+.check-in { animation: checkIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes checkIn { from { transform: scale(0) rotate(-20deg); } }
+
+.wish-box {
+  width: 100%;
+  border: 2.5px solid #EBD5DC;
+  border-radius: 1rem;
+  background: #fff;
+  padding: 1rem 1.1rem;
+  font-size: 1.05rem;
+  color: ${INK};
+  outline: none;
+  resize: none;
 }
-.confetto { top: -2rem; animation: fall 2.8s ease-in forwards; }
-@keyframes fall {
-  to { transform: translateY(110vh) rotate(220deg); opacity: 0.2; }
+.wish-box:focus { border-color: ${ROSE}; }
+.wish-box::placeholder { color: #CBB3AE; }
+
+.letter {
+  background: #FFF9F2;
+  border: 2.5px dashed #E8C8D2;
+  border-radius: 1rem;
+  padding: 1.1rem 1.2rem;
+  color: #7A6660;
+  line-height: 1.7;
 }
+
+.card-in { animation: cardIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes cardIn { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
+
+.k-bob { animation: bob 3s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-5px); } }
+
+.k-blink { transform-origin: center 47px; animation: blink 4.6s infinite; }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 96%, 98% { transform: scaleY(0.08); } }
+
+.k-tail { transform-origin: 96px 92px; animation: tail 3.4s ease-in-out infinite; }
+@keyframes tail { 50% { transform: rotate(8deg); } }
+
+.k-float-heart { animation: floatHeart 1.8s ease-in-out infinite; }
+@keyframes floatHeart { 50% { transform: translateY(-4px); } }
+
+.twinkle { animation: twinkle 3.2s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); } 50% { opacity: 1; transform: scale(1.25) rotate(12deg); } }
 `;
