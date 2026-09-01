@@ -48,7 +48,6 @@ const QUESTIONS: Question[] = [
       "dance in the living room",
       "home spa",
       "make something crafty",
-      "talk on the couch till late",
     ],
   },
   {
