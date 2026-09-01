@@ -267,6 +267,8 @@ function Check() {
 export default function DateNight() {
   const [step, setStep] = useState(-1);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
+  const [others, setOthers] = useState<Record<string, string>>({});
+  const [otherOpen, setOtherOpen] = useState<Record<string, boolean>>({});
   const [wish, setWish] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -291,10 +293,15 @@ export default function DateNight() {
   };
 
   const summary = useMemo(() => {
-    const lines = QUESTIONS.map((q) => `${q.title} ${(answers[q.id] ?? []).join(", ") || "—"}`);
+    const lines = QUESTIONS.map((q) => {
+      const picked = [...(answers[q.id] ?? [])];
+      const own = (others[q.id] ?? "").trim();
+      if (own) picked.push(own);
+      return `${q.title} ${picked.join(", ") || "—"}`;
+    });
     if (wish.trim()) lines.push(`my little wish: ${wish.trim()}`);
     return `date night — my answers ♡\n\n${lines.join("\n")}`;
-  }, [answers, wish]);
+  }, [answers, others, wish]);
 
   const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(summary)}`;
 
@@ -368,15 +375,37 @@ export default function DateNight() {
                     </button>
                   );
                 })}
+                {otherOpen[question.id] ? (
+                  <input
+                    autoFocus
+                    value={others[question.id] ?? ""}
+                    onChange={(e) => setOthers((p) => ({ ...p, [question.id]: e.target.value }))}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && (others[question.id] ?? "").trim()) setStep((s) => s + 1);
+                    }}
+                    placeholder="your own idea…"
+                    className="wish-box !py-3"
+                  />
+                ) : (
+                  <button
+                    onClick={() => setOtherOpen((p) => ({ ...p, [question.id]: true }))}
+                    className="opt opt-dashed ink-faint"
+                  >
+                    <span>or something of your own…</span>
+                  </button>
+                )}
               </div>
               <div className="flex justify-between items-center pt-1">
                 <button onClick={() => setStep((s) => s - 1)} className="btn-ghost">
                   back
                 </button>
-                {question.multi && (
+                {(question.multi || otherOpen[question.id]) && (
                   <button
                     onClick={() => setStep((s) => s + 1)}
-                    disabled={(answers[question.id] ?? []).length === 0}
+                    disabled={
+                      (answers[question.id] ?? []).length === 0 &&
+                      !(others[question.id] ?? "").trim()
+                    }
                     className="btn-main btn-sm"
                   >
                     done
@@ -483,6 +512,7 @@ const css = `
 }
 .opt:hover { border-color: ${ROSE}; transform: translateY(-1px); box-shadow: 0 3px 0 #F5DDE5; }
 .opt:active { transform: scale(0.98); }
+.opt-dashed { border-style: dashed; font-weight: 400; }
 .opt-on {
   border-color: ${INK};
   background: ${ROSE_SOFT};
