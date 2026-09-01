@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from "react";
 
 const PASSWORD = "TIMDT";
 
-type Mood = "happy" | "hungry" | "excited" | "tipsy" | "sweet" | "groovy" | "wish" | "love";
+type Mood = "happy" | "shy" | "hungry" | "excited" | "tipsy" | "sweet" | "groovy" | "wish" | "love";
 
 type Question = {
   id: string;
@@ -205,6 +205,25 @@ function Kitty({ mood }: { mood: Mood }) {
           <path d="M96 78 v8 M90 88 h12" stroke={INK} strokeWidth={S * 0.8} strokeLinecap="round" />
         </g>
       )}
+      {mood === "shy" && (
+        <g>
+          {/* paws pressed over the eyes, angled in */}
+          <g transform="rotate(-12 40 47)">
+            <ellipse cx="40" cy="47" rx="13" ry="11" fill={ROSE_SOFT} stroke={INK} strokeWidth={S * 0.9} />
+            <circle cx="34" cy="51" r="2" fill={ROSE} />
+            <circle cx="40" cy="53" r="2" fill={ROSE} />
+            <circle cx="46" cy="51" r="2" fill={ROSE} />
+            <ellipse cx="40" cy="45" rx="4.5" ry="3.5" fill={ROSE} opacity="0.6" />
+          </g>
+          <g transform="rotate(12 80 47)">
+            <ellipse cx="80" cy="47" rx="13" ry="11" fill={ROSE_SOFT} stroke={INK} strokeWidth={S * 0.9} />
+            <circle cx="74" cy="51" r="2" fill={ROSE} />
+            <circle cx="80" cy="53" r="2" fill={ROSE} />
+            <circle cx="86" cy="51" r="2" fill={ROSE} />
+            <ellipse cx="80" cy="45" rx="4.5" ry="3.5" fill={ROSE} opacity="0.6" />
+          </g>
+        </g>
+      )}
       {mood === "sweet" && (
         /* little tongue */
         <path d="M56 66 q4 6 8 0 q0 6 -4 6 q-4 0 -4 -6 Z" fill={ROSE} stroke={INK} strokeWidth={S * 0.6} />
@@ -266,7 +285,7 @@ function Check() {
 
 /* ---------------- lock screen ---------------- */
 
-function Lock({ onOpen }: { onOpen: () => void }) {
+function Lock({ onOpen, onCover }: { onOpen: () => void; onCover: (c: boolean) => void }) {
   const [letters, setLetters] = useState<string[]>(Array(PASSWORD.length).fill(""));
   const [wrong, setWrong] = useState(0);
   const refs = useRef<(HTMLInputElement | null)[]>([]);
@@ -321,6 +340,8 @@ function Lock({ onOpen }: { onOpen: () => void }) {
             value={l}
             onChange={(e) => onChange(i, e.target.value)}
             onKeyDown={(e) => onKeyDown(i, e)}
+            onFocus={() => onCover(true)}
+            onBlur={() => { if (letters.every((x) => !x)) onCover(false); }}
             autoFocus={i === 0}
             autoCapitalize="characters"
             autoComplete="off"
@@ -346,6 +367,7 @@ function Lock({ onOpen }: { onOpen: () => void }) {
 
 export default function DateNight() {
   const [step, setStep] = useState(-2);
+  const [covering, setCovering] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [others, setOthers] = useState<Record<string, string>>({});
   const [otherOpen, setOtherOpen] = useState<Record<string, boolean>>({});
@@ -354,7 +376,18 @@ export default function DateNight() {
 
   const done = step >= TOTAL_STEPS;
   const question = step >= 0 && step < QUESTIONS.length ? QUESTIONS[step] : null;
-  const mood: Mood = done ? "love" : question ? question.mood : step === QUESTIONS.length ? "wish" : "happy";
+  const mood: Mood =
+    step === -2
+      ? covering
+        ? "shy"
+        : "happy"
+      : done
+        ? "love"
+        : question
+          ? question.mood
+          : step === QUESTIONS.length
+            ? "wish"
+            : "happy";
 
   const toggle = (q: Question, label: string) => {
     setAnswers((prev) => {
@@ -419,7 +452,7 @@ export default function DateNight() {
         </div>
 
         <div key={step} className="card-in">
-          {step === -2 && <Lock onOpen={() => setStep(-1)} />}
+          {step === -2 && <Lock onOpen={() => setStep(-1)} onCover={setCovering} />}
 
           {step === -1 && (
             <div className="paper text-center space-y-5">
