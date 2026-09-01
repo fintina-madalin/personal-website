@@ -207,20 +207,14 @@ function Kitty({ mood }: { mood: Mood }) {
       )}
       {mood === "shy" && (
         <g>
-          {/* paws pressed over the eyes, angled in */}
+          {/* paws pressed over the eyes — seen from the back, angled in */}
           <g transform="rotate(-12 40 47)">
-            <ellipse cx="40" cy="47" rx="13" ry="11" fill={ROSE_SOFT} stroke={INK} strokeWidth={S * 0.9} />
-            <circle cx="34" cy="51" r="2" fill={ROSE} />
-            <circle cx="40" cy="53" r="2" fill={ROSE} />
-            <circle cx="46" cy="51" r="2" fill={ROSE} />
-            <ellipse cx="40" cy="45" rx="4.5" ry="3.5" fill={ROSE} opacity="0.6" />
+            <ellipse cx="40" cy="47" rx="13" ry="11" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+            <path d="M36 54 v-4 M42 55 v-4" stroke={INK} strokeWidth={S * 0.6} strokeLinecap="round" />
           </g>
           <g transform="rotate(12 80 47)">
-            <ellipse cx="80" cy="47" rx="13" ry="11" fill={ROSE_SOFT} stroke={INK} strokeWidth={S * 0.9} />
-            <circle cx="74" cy="51" r="2" fill={ROSE} />
-            <circle cx="80" cy="53" r="2" fill={ROSE} />
-            <circle cx="86" cy="51" r="2" fill={ROSE} />
-            <ellipse cx="80" cy="45" rx="4.5" ry="3.5" fill={ROSE} opacity="0.6" />
+            <ellipse cx="80" cy="47" rx="13" ry="11" fill="#fff" stroke={INK} strokeWidth={S * 0.9} />
+            <path d="M78 55 v-4 M84 54 v-4" stroke={INK} strokeWidth={S * 0.6} strokeLinecap="round" />
           </g>
         </g>
       )}
