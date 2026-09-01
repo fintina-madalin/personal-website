@@ -1,6 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+
+const PASSWORD = "TIMDT";
 
 type Mood = "happy" | "hungry" | "excited" | "tipsy" | "sweet" | "groovy" | "wish" | "love";
 
@@ -262,10 +264,88 @@ function Check() {
   );
 }
 
+/* ---------------- lock screen ---------------- */
+
+function Lock({ onOpen }: { onOpen: () => void }) {
+  const [letters, setLetters] = useState<string[]>(Array(PASSWORD.length).fill(""));
+  const [wrong, setWrong] = useState(0);
+  const refs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const tryCode = (ls: string[]) => {
+    if (ls.some((l) => !l)) return;
+    if (ls.join("").toUpperCase() === PASSWORD) {
+      onOpen();
+    } else {
+      setWrong((w) => w + 1);
+      setLetters(Array(PASSWORD.length).fill(""));
+      refs.current[0]?.focus();
+    }
+  };
+
+  const onChange = (i: number, v: string) => {
+    const ch = v.replace(/[^a-zA-Z]/g, "").slice(-1).toUpperCase();
+    const next = [...letters];
+    next[i] = ch;
+    setLetters(next);
+    if (ch && i < PASSWORD.length - 1) refs.current[i + 1]?.focus();
+    if (ch && i === PASSWORD.length - 1) tryCode(next);
+  };
+
+  const onKeyDown = (i: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && !letters[i] && i > 0) refs.current[i - 1]?.focus();
+  };
+
+  const onPaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData("text").replace(/[^a-zA-Z]/g, "").toUpperCase().slice(0, PASSWORD.length);
+    if (!text) return;
+    const next = Array(PASSWORD.length).fill("").map((_, i) => text[i] ?? "");
+    setLetters(next);
+    refs.current[Math.min(text.length, PASSWORD.length - 1)]?.focus();
+    if (text.length === PASSWORD.length) tryCode(next);
+  };
+
+  return (
+    <div className="paper text-center space-y-5">
+      <h1 className="text-3xl font-semibold ink">it&apos;s locked.</h1>
+      <p className="text-[17px] leading-relaxed ink-soft">
+        This one is only for one person in the whole world.
+        <br />
+        Prove it&apos;s you.
+      </p>
+      <div key={wrong} className={`flex justify-center gap-2 ${wrong ? "shake" : ""}`} onPaste={onPaste}>
+        {letters.map((l, i) => (
+          <input
+            key={i}
+            ref={(el) => { refs.current[i] = el; }}
+            value={l}
+            onChange={(e) => onChange(i, e.target.value)}
+            onKeyDown={(e) => onKeyDown(i, e)}
+            autoFocus={i === 0}
+            autoCapitalize="characters"
+            autoComplete="off"
+            inputMode="text"
+            aria-label={`letter ${i + 1}`}
+            className="code-box"
+          />
+        ))}
+      </div>
+      <p className="ink-faint text-[15px]">
+        hint: the initials of something I tell you every single day ♡
+      </p>
+      {wrong > 0 && (
+        <p className="text-[15px]" style={{ color: ROSE }}>
+          {wrong === 1 ? "nope… try again, love" : "it's five little words, you know them"}
+        </p>
+      )}
+    </div>
+  );
+}
+
 /* ---------------- page ---------------- */
 
 export default function DateNight() {
-  const [step, setStep] = useState(-1);
+  const [step, setStep] = useState(-2);
   const [answers, setAnswers] = useState<Record<string, string[]>>({});
   const [others, setOthers] = useState<Record<string, string>>({});
   const [otherOpen, setOtherOpen] = useState<Record<string, boolean>>({});
@@ -339,6 +419,8 @@ export default function DateNight() {
         </div>
 
         <div key={step} className="card-in">
+          {step === -2 && <Lock onOpen={() => setStep(-1)} />}
+
           {step === -1 && (
             <div className="paper text-center space-y-5">
               <h1 className="text-3xl font-semibold ink">hi, you.</h1>
@@ -513,6 +595,26 @@ const css = `
 .opt:hover { border-color: ${ROSE}; transform: translateY(-1px); box-shadow: 0 3px 0 #F5DDE5; }
 .opt:active { transform: scale(0.98); }
 .opt-dashed { border-style: dashed; font-weight: 400; }
+
+.code-box {
+  width: 3rem; height: 3.6rem;
+  text-align: center;
+  font-size: 1.6rem; font-weight: 600; color: ${INK};
+  background: #fff;
+  border: 2.5px solid #EBD5DC;
+  border-radius: 0.9rem;
+  outline: none;
+  caret-color: ${ROSE};
+  transition: border-color 0.12s, transform 0.12s;
+}
+.code-box:focus { border-color: ${ROSE}; transform: translateY(-2px); }
+.shake { animation: shake 0.4s; }
+@keyframes shake {
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
 .opt-on {
   border-color: ${INK};
   background: ${ROSE_SOFT};
