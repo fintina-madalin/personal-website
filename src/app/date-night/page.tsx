@@ -21,20 +21,19 @@ const QUESTIONS: Question[] = [
     mood: "happy",
     options: [
       "cozy & snuggly",
-      "fancy — we dress up",
       "silly & playful",
       "home cinema, pajamas on",
     ],
   },
   {
     id: "food",
-    title: "what are we eating?",
+    title: "chef me is cooking — what are you craving?",
     mood: "hungry",
     options: [
-      "we cook together",
-      "a big snack board",
-      "order whatever we crave",
-      "sushi, obviously",
+      "pasta night",
+      "something asian-ish",
+      "comfort food classics",
+      "chef's surprise",
     ],
   },
   {
@@ -57,10 +56,10 @@ const QUESTIONS: Question[] = [
     title: "in our glasses…",
     mood: "tipsy",
     options: [
-      "wine",
-      "cocktails by the house barman",
+      "fancy mocktails by the house barman",
       "tea or hot cocoa",
-      "something cute, no alcohol",
+      "fresh lemonade",
+      "something bubbly",
     ],
   },
   {
@@ -73,7 +72,7 @@ const QUESTIONS: Question[] = [
     id: "music",
     title: "the soundtrack?",
     mood: "groovy",
-    options: ["chill & dreamy", "our songs", "latino", "smooth jazz"],
+    options: ["chill & dreamy", "latino", "smooth jazz"],
   },
 ];
 
