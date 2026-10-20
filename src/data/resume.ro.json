@@ -99,7 +99,7 @@
       "location": "Remote",
       "contract_type": "Contract pe bază de proiect",
       "startDate": "2022-10",
-      "endDate": "2023-07",
+      "endDate": "2023-03",
       "highlights": [
         { "text": "Am oferit leadership tehnic și mentorat membrilor juniori ai echipei, ținând linia pe bune practici.", "kind": "story" },
         { "text": "Am lucrat end-to-end cu React, Node.js, Laravel, Vue.js și VTEX.", "kind": "story" },
@@ -113,7 +113,7 @@
       "location": "Remote",
       "contract_type": "Contract B2B full-time",
       "startDate": "2022-01",
-      "endDate": "2022-10",
+      "endDate": "2022-09",
       "highlights": [
         { "text": "Am condus o echipă de 3 dezvoltatori care livra aplicații web eficiente.", "kind": "story" },
         { "text": "Am construit pe PHP 7.4, Symfony, MySQL, Redis, Podman, Kibana și Elasticsearch.", "kind": "story" },

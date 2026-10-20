@@ -99,7 +99,7 @@
       "location": "Remote",
       "contract_type": "Project based contract",
       "startDate": "2022-10",
-      "endDate": "2023-07",
+      "endDate": "2023-03",
       "highlights": [
         { "text": "Provided technical leadership and mentorship to junior team members, holding the line on best practices.", "kind": "story" },
         { "text": "Worked end-to-end across React, Node.js, Laravel, Vue.js, and VTEX.", "kind": "story" },
@@ -113,7 +113,7 @@
       "location": "Remote",
       "contract_type": "Full time B2B contract",
       "startDate": "2022-01",
-      "endDate": "2022-10",
+      "endDate": "2022-09",
       "highlights": [
         { "text": "Led a team of 3 developers shipping efficient web applications.", "kind": "story" },
         { "text": "Built on PHP 7.4, Symfony, MySQL, Redis, Podman, Kibana, and Elasticsearch.", "kind": "story" },
