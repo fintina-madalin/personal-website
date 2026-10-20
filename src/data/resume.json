@@ -19,7 +19,10 @@
       "contract_type": "Full time B2B contract",
       "startDate": "2026-07",
       "endDate": "Present",
-      "highlights": []
+      "highlights": [
+        { "text": "Joined Eneba's security team, working on the platform behind its digital-goods marketplace.", "kind": "story" },
+        { "text": "Contract extended after the 90-day probation.", "kind": "decision" }
+      ]
     },
     {
       "company": "Graffish",
@@ -28,7 +31,11 @@
       "contract_type": "Freelance",
       "startDate": "2018-05",
       "endDate": "Present",
-      "highlights": []
+      "highlights": [
+        { "text": "Co-owner and solutions architect of the studio; designs and ships its products end to end.", "kind": "story" },
+        { "text": "Architected DomainCare (domaincare.io), a SaaS product, and Registrus, an IP-management product.", "kind": "story" },
+        { "text": "Built Nucleus, the internal tool the team runs on, and delivered a custom ERP for a client.", "kind": "decision" }
+      ]
     },
     {
       "company": "Bitly",
