@@ -20,8 +20,7 @@
       "startDate": "2026-07",
       "endDate": "Prezent",
       "highlights": [
-        { "text": "M-am alăturat echipei de securitate Eneba, lucrând pe platforma din spatele marketplace-ului de produse digitale.", "kind": "story" },
-        { "text": "Contract prelungit după perioada de probă de 90 de zile.", "kind": "decision" }
+        { "text": "M-am alăturat echipei de securitate Eneba, lucrând pe platforma din spatele marketplace-ului de produse digitale.", "kind": "story" }
       ]
     },
     {
@@ -31,11 +30,7 @@
       "contract_type": "Freelance",
       "startDate": "2018-05",
       "endDate": "Prezent",
-      "highlights": [
-        { "text": "Coproprietar și arhitect de soluții al studioului; proiectez și livrez produsele de la cap la coadă.", "kind": "story" },
-        { "text": "Am proiectat arhitectura DomainCare (domaincare.io), un produs SaaS, și Registrus, un produs pentru managementul proprietății intelectuale.", "kind": "story" },
-        { "text": "Am construit Nucleus, unealta internă pe care rulează echipa, și am livrat un ERP personalizat pentru un client.", "kind": "decision" }
-      ]
+      "highlights": []
     },
     {
       "company": "Bitly",
