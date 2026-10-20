@@ -13,16 +13,34 @@
   },
   "workExperience": [
     {
+      "company": "Eneba",
+      "position": "Senior Software Engineer",
+      "location": "Remote",
+      "contract_type": "Full time B2B contract",
+      "startDate": "2026-07",
+      "endDate": "Present",
+      "highlights": []
+    },
+    {
+      "company": "Graffish",
+      "position": "Solutions Architect",
+      "location": "Oradea · Remote",
+      "contract_type": "Freelance",
+      "startDate": "2018-05",
+      "endDate": "Present",
+      "highlights": []
+    },
+    {
       "company": "Bitly",
       "position": "Senior Software Developer",
       "location": "Remote",
       "contract_type": "Full time B2B contract",
       "startDate": "2025-08",
-      "endDate": "Present",
+      "endDate": "2026-09",
       "highlights": [
-        { "text": "I am building features on the QRCG product, leaning into a TypeScript / React / Next.js front end backed by Golang services on AWS.", "kind": "story" },
-        { "text": "I am helping move our platform off a legacy PHP API onto a modern Golang one, paying down years of architectural debt as we go.", "kind": "decision" },
-        { "text": "Alongside the team, I am crafting custom AI skills and context-management tooling that genuinely speed up our day-to-day work.", "kind": "ai" }
+        { "text": "Built features on the QRCG product, leaning into a TypeScript / React / Next.js front end backed by Golang services on AWS.", "kind": "story" },
+        { "text": "Helped move the platform off a legacy PHP API onto a modern Golang one, paying down years of architectural debt along the way.", "kind": "decision" },
+        { "text": "Alongside the team, built custom AI skills and context-management tooling that sped up the team's day-to-day work.", "kind": "ai" }
       ]
     },
     {
@@ -52,11 +70,20 @@
     },
     {
       "company": "Remote Tech",
+      "position": "Deputy Chief Technology Officer",
+      "location": "Remote",
+      "contract_type": "Full time employment",
+      "startDate": "2024-01",
+      "endDate": "2024-04",
+      "highlights": []
+    },
+    {
+      "company": "Remote Tech",
       "position": "Senior Software Engineer",
       "location": "Remote",
       "contract_type": "Full time employment",
       "startDate": "2023-03",
-      "endDate": "2024-03",
+      "endDate": "2024-01",
       "highlights": [
         { "text": "Achieved a 174% increase in API responsiveness by tuning database queries, backend processes, and MQTT communication.", "kind": "metric" },
         { "text": "Led the transition to Symfony for the IoT platform, picking it for its robust architecture and ecosystem fit.", "kind": "decision" },
@@ -167,8 +194,8 @@
       "position": "Web Developer",
       "location": "Constanta",
       "contract_type": "Full time employment",
-      "startDate": "2014-09",
-      "endDate": "2016-09",
+      "startDate": "2014-02",
+      "endDate": "2018-10",
       "highlights": [
         { "text": "Built and maintained a real-estate agency platform.", "kind": "story" },
         { "text": "Implemented APIs that auto-published listings to property portals.", "kind": "story" },
@@ -249,6 +276,5 @@
       "proficiency": "Native"
     }
   ],
-  "recommendations": [
-  ]
+  "recommendations": []
 }

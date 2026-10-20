@@ -13,16 +13,34 @@
   },
   "workExperience": [
     {
+      "company": "Eneba",
+      "position": "Inginer Software Senior",
+      "location": "Remote",
+      "contract_type": "Contract B2B full-time",
+      "startDate": "2026-07",
+      "endDate": "Prezent",
+      "highlights": []
+    },
+    {
+      "company": "Graffish",
+      "position": "Arhitect de Soluții",
+      "location": "Oradea · Remote",
+      "contract_type": "Freelance",
+      "startDate": "2018-05",
+      "endDate": "Prezent",
+      "highlights": []
+    },
+    {
       "company": "Bitly",
       "position": "Dezvoltator Software Senior",
       "location": "Remote",
       "contract_type": "Contract B2B full-time",
       "startDate": "2025-08",
-      "endDate": "Prezent",
+      "endDate": "2026-09",
       "highlights": [
-        { "text": "Construiesc funcționalități pe produsul QRCG, mizând pe un front-end TypeScript / React / Next.js susținut de servicii Golang pe AWS.", "kind": "story" },
-        { "text": "Particip la migrarea platformei de la un API PHP legacy către unul modern în Golang, plătind ani de datorie arhitecturală pe parcurs.", "kind": "decision" },
-        { "text": "Alături de echipă dezvolt skill-uri AI personalizate și unelte de management al contextului care chiar accelerează munca de zi cu zi.", "kind": "ai" }
+        { "text": "Am construit funcționalități pe produsul QRCG, mizând pe un front-end TypeScript / React / Next.js susținut de servicii Golang pe AWS.", "kind": "story" },
+        { "text": "Am participat la migrarea platformei de la un API PHP legacy către unul modern în Golang, plătind ani de datorie arhitecturală pe parcurs.", "kind": "decision" },
+        { "text": "Alături de echipă am dezvoltat skill-uri AI personalizate și unelte de management al contextului care au accelerat munca de zi cu zi a echipei.", "kind": "ai" }
       ]
     },
     {
@@ -52,11 +70,20 @@
     },
     {
       "company": "Remote Tech",
+      "position": "Director Tehnic Adjunct (Deputy CTO)",
+      "location": "Remote",
+      "contract_type": "Angajare full-time",
+      "startDate": "2024-01",
+      "endDate": "2024-04",
+      "highlights": []
+    },
+    {
+      "company": "Remote Tech",
       "position": "Inginer Software Senior",
       "location": "Remote",
       "contract_type": "Angajare full-time",
       "startDate": "2023-03",
-      "endDate": "2024-03",
+      "endDate": "2024-01",
       "highlights": [
         { "text": "Am obținut o creștere de 174% a responsivității API-ului prin optimizarea interogărilor de bază de date, a proceselor backend și a comunicării MQTT.", "kind": "metric" },
         { "text": "Am condus tranziția către Symfony pentru platforma IoT, alegând-o pentru arhitectura solidă și ecosistemul potrivit.", "kind": "decision" },
@@ -167,8 +194,8 @@
       "position": "Dezvoltator Web",
       "location": "Constanța",
       "contract_type": "Angajare full-time",
-      "startDate": "2014-09",
-      "endDate": "2016-09",
+      "startDate": "2014-02",
+      "endDate": "2018-10",
       "highlights": [
         { "text": "Am construit și menținut o platformă pentru o agenție imobiliară.", "kind": "story" },
         { "text": "Am implementat API-uri care publicau automat anunțuri pe portaluri imobiliare.", "kind": "story" },
