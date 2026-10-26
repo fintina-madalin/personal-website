@@ -20,7 +20,9 @@
       "startDate": "2026-07",
       "endDate": "Present",
       "highlights": [
-        { "text": "Joined Eneba's security team, working on the platform behind its digital-goods marketplace.", "kind": "story" }
+        { "text": "Joined Eneba's security team, working on the platform behind its digital-goods marketplace.", "kind": "story" },
+        { "text": "Built Monocle, a set of AI reviewer agents that check every pull request through six lenses, each with its own focus.", "kind": "ai" },
+        { "text": "Built attack watchers that monitor logs and metrics for attacks such as credential stuffing and SMS pumping, and flag them early.", "kind": "story" }
       ]
     },
     {

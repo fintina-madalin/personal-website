@@ -20,7 +20,9 @@
       "startDate": "2026-07",
       "endDate": "Prezent",
       "highlights": [
-        { "text": "M-am alăturat echipei de securitate Eneba, lucrând pe platforma din spatele marketplace-ului de produse digitale.", "kind": "story" }
+        { "text": "M-am alăturat echipei de securitate Eneba, lucrând pe platforma din spatele marketplace-ului de produse digitale.", "kind": "story" },
+        { "text": "Am construit Monocle, un set de agenți AI care fac review la fiecare pull request din șase unghiuri, fiecare cu focusul lui.", "kind": "ai" },
+        { "text": "Am construit sisteme care urmăresc logurile și metricile pentru atacuri precum credential stuffing și SMS pumping și le semnalează din timp.", "kind": "story" }
       ]
     },
     {
